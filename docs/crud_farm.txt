@@ -1,0 +1,496 @@
+///////////////////////
+// Stored Procedures // (23 to go)
+///////////////////////
+
+configuration_globals
+=====================
+p_configuration_AddGlobal
+p_configuration_ModifyGlobal
+p_configuration_RemoveGlobal
+p_configuration_FetchGlobal
+p_configuration_ListGlobal
+
+configuration_lookup_global_languages
+=====================================
+p_configuration_AddGlobalLanguage
+p_configuration_ModifyGlobalLanguage
+p_configuration_RemoveGlobalLanguage
+p_configuration_FetchGlobalLanguage
+p_configuration_ListGlobalLanguage
+
+configuration_lookup_global_titles
+==================================
+p_configuration_AddGlobalTitle
+p_configuration_ModifyGlobalTitle
+p_configuration_RemoveGlobalTitle
+p_configuration_FetchGlobalTitle
+p_configuration_ListGlobalTitle
+
+configuration_lookup_security_authentication_methods
+===================================================
+p_configuration_AddLSecurityAuthenticationMethod
+p_configuration_ModifySecurityAuthenticationMethod
+p_configuration_RemoveSecurityAuthenticationMethod
+p_configuration_FetchSecurityAuthenticationMethod
+p_configuration_ListSecurityAuthenticationMethod
+
+configuration_lookup_security_client_types
+==========================================
+p_configuration_AddSecurityClientType
+p_configuration_ModifySecurityClientType
+p_configuration_RemoveSecurityClientType
+p_configuration_FetchSecurityClientType
+p_configuration_ListSecurityClientType
+
+configuration_lookup_system_dock_types
+======================================
+p_configuration_AddSystemDockType
+p_configuration_ModifySystemDockType
+p_configuration_RemoveSystemDockType
+p_configuration_FetchSystemDockType
+p_configuration_ListSystemDockType
+
+configuration_lookup_system_log_types
+=====================================
+p_configuration_AddSystemLogType
+p_configuration_ModifySystemLogType
+p_configuration_RemoveSystemLogType
+p_configuration_FetchSystemLogType
+p_configuration_ListSystemLogType
+
+location_countries
+==================
+p_location_AddCountry
+p_location_ModifyCountry
+p_location_RemoveCountry
+p_location_FetchCountry
+p_location_ListCountry
+
+security_dock_items_permissions
+===============================
+p_security_AddDockItemPermission
+p_security_RemoveDockItemPermission
+p_security_ListDockItemPermission
+
+security_dock_subitems_permissions
+==================================
+p_security_AddDockSubitemPermission
+p_security_RemoveDockSubitemPermission
+p_security_ListDockSubitemPermisison
+
+security_dock_tabs_permissions
+==============================
+p_security_AddDockTabPermission
+p_security_RemoveDockTabPermission
+p_security_ListDockTabPermission
+
+security_docks_permissions
+==========================
+p_security_AddDockPermission
+p_security_RemoveDockPrmission
+p_security_ListDockPermission
+
+security_effective_permissions
+==============================
+p_security_GenerateEffectivePermission
+p_security_ListUserSessionPermission
+p_security_FetchUserSessionBasic
+
+security_messages_permissions
+=============================
+p_security_AddMessagePermission
+p_security_RemoveMessagePermission
+p_security_ListMessagePermission
+
+security_nonces
+===============
+p_security_FetchNonce
+
+security_permissions
+====================
+p_security_AddPermission
+p_security_ModifyPermission
+p_security_RemovePermission
+p_security_FetchPermission
+p_security_ListPermission
+
+security_registrations
+======================
+p_security_AddRegistration
+p_security_ModifyRegistration
+p_security_RemoveRegistration
+p_security_FetchRegistration
+p_security_ListRegistration
+p_security_QuickFetchRegistration
+
+security_roles
+==============
+p_security_AddRole
+p_security_ModifyRole
+p_security_RemoveRole
+p_security_FetchRole
+p_security_ListRole
+
+security_roles_permissions
+==========================
+p_security_AddRolePermission
+p_security_RemoveRolePermission
+* p_security_FetchRolePermission
+* p_security_ListRolePermission
+
+security_sessions
+=================
+p_security_AddSession
+p_security_CheckSession
+p_security_FetchSession
+p_security_EndSession
+p_security_ExtendSession
+p_security_ModifySession
+
+security_users_credentials
+==========================
+p_security_AddUserCredential
+p_security_ModifyUserCredential
+p_security_RemoveUserCredential
+* p_security_FetchUserCredential
+p_security_ListUserCredential
+
+security_users_permissions
+==========================
+p_security_AddUserPermission
+p_security_RemoveUserPermission
+* p_security_FetchUserPermission
+* p_security_ListUserPermission
+
+security_users_roles
+====================
+p_security_AddUserRole
+p_security_RemoveUserRole
+* p_security_FetchUserRole
+* p_security_ListUserRole
+
+system_dock_items
+=================
+p_system_AddDockItem
+p_system_ModifyDockItem
+p_system_RemoveDockItem
+p_system_FetchDockItem
+p_system_ListDockItem
+
+system_dock_subitems
+=================
+p_system_AddDockSubitem
+p_system_ModifyDockSubitem
+p_system_RemoveDockSubitem
+p_system_FetchDockSubitem
+p_system_ListDockSubitem
+
+system_dock_tabs
+=================
+p_system_AddDockTab
+p_system_ModifyDockTab
+p_system_RemoveDockTab
+p_system_FetchDockTab
+p_system_ListDockTab
+
+system_docks
+=================
+p_system_AddDock
+p_system_ModifyDock
+p_system_RemoveDock
+p_system_FetchDock
+p_system_ListDock
+
+system_field_translations
+=========================
+p_system_AddFieldTranslation
+p_system_ModifyFieldTranslation
+p_system_RemoveFieldTranslation
+* p_system_FetchFieldTranslation
+* p_system_ListFieldTranslation
+* p_system_TranslateField
+* p_system_QuickTranslateField
+
+system_log_messgages
+==================
+p_system_LogMessage
+* p_system_ListLogMessage
+* p_system_FetchLogMessage
+
+system_log_queries
+==================
+p_system_LogQuery
+* p_system_ListLogQuery
+* p_system_FetchLogQuery
+
+system_log_transaction_details
+==============================
+p_system_LogTransactionDetailText
+p_system_LogTransactionDetailInteger
+p_system_LogTransactionDetailFloat
+p_system_LogTransactionDetailDatetime
+p_system_LogTransactionDetailDate
+p_system_LogTransactionDetailUuid
+p_system_LogTransactionDetailBit
+p_system_LogTransactionDetailLookup
+p_system_LogTransactionDetailSha
+* p_system_FetchLogTransactionDetail
+* p_system_ListLogTransationDetail
+
+system_log_transactions
+=======================
+p_system_LogTransaction
+p_system_FetchLogTransaction
+* p_system_ListLogTransaction
+p_system_LogHumanReadable
+
+system_messages
+===============
+p_system_AddMessage
+p_system_ModifyMessage
+p_system_RemoveMessage
+p_system_FetchMessage
+p_system_ListMessage
+
+system_modules
+==============
+p_system_AddModule
+p_system_ModifyModule
+p_system_RemoveModule
+p_system_FetchModule
+p_system_ListModule
+
+system_partitions
+=================
+p_system_AddPartition
+p_system_ModifyPartition
+p_system_RemovePartition
+p_system_FetchPartition
+p_system_ListPartition
+
+system_string_translations
+==========================
+p_system_AddStringTranslation
+p_system_ModifyStringTranslation
+p_system_RemoveStringTranslation
+* p_system_FetchStringTranslation
+* p_system_ListStringTranslation
+p_system_TranslateString
+p_system_QuickTranslateString
+
+system_tables
+=============
+p_system_AddTable
+p_system_LockTable
+p_system_UnLockTable
+p_system_ModifyTable
+p_system_RemoveTable
+p_system_FetchTable
+p_system_ListTable
+
+user_groups
+===========
+p_user_AddGroup
+p_user_ModifyGroup
+p_user_RemoveGroup
+p_user_FetchGroup
+p_user_ListGroup
+
+user_users
+==========
+p_user_AddUser
+p_user_ModifyUser
+p_user_RemoveUser
+p_user_FetchUser
+p_user_ListUser
+* p_user_SearchUser
+
+user_users_groups
+=================
+p_user_AddUserGroup
+p_user_RemoveUserGroup
+* p_user_FetchUserGroup
+* p_user_ListUserGroup
+
+///////////////
+// Functions //
+///////////////
+
+f_BinToSha
+f_BinToUuid
+f_BitToOutput
+f_DatetimeToOutput
+f_DatetimeToString
+f_DateToOutput
+f_DateToString
+f_ShaToBin
+f_UuidToBin
+
+/////////
+// New //
+/////////
+
+taxonomy_vocabularies
+ - vocbulary_name
+ - display_name
+ - modules_id
+ 
+ taxonomy_terms
+ - term_name
+ - display_name
+ - vocabularies_id
+ 
+ taxonomy_terms_products
+ - terms_id
+ - vocabularies_id
+ - products_id
+ 
+ principal_principals
+ - principal_name
+ - display_name
+ 
+ product_alerts
+ - products_id
+ - alert_name
+ - content
+ - start_date
+ - finish_date
+ - is_active
+ 
+ product_reservation_request_texts
+ - products_id
+ - content
+ - reservation_text_types
+ 
+ product_alternate_products
+ - products_id
+ - alternate_products_id
+ 
+ configuration_lookup_product_information_types
+ - name_label
+ - display_label
+ - is_active
+ - magic
+ - weighting
+ * "description"
+ * "web description"
+ * "extended description"
+ 
+ configuration_lookup_product_price_season_types
+ - name_label
+ - display_label
+ - is_active
+ - weighting
+ - magic
+ * "per pax"
+ * "per product"
+ * "sliding scale"
+ * "per unit"
+ 
+ configuration_lookup_product_reservation_text_type
+ - name_label
+ - display_label
+ - is_active
+ - weighting
+ - magic
+ 
+ product_informations
+ - products_id
+ - weighting
+ - information_name
+ - description
+ - information_types_id
+ 
+ product_voucher_texts
+ - products_id
+ - content
+ - voucher_name
+ - picture_path
+ - caption
+ 
+ agent_commissions
+ * "ground_module"
+ * "transfer"
+ * "air"
+ * "single supplement"
+ 
+ product_products_partitions
+ - products_id
+ - partitions_id
+ 
+ brochure_brochures
+ - brochure_name
+ 
+ product_products
+ - principals_id
+ - product_name
+ - product_code
+ - brochures_id
+ - capacity
+ - nights
+ - lead_days
+ - is_active
+ 
+ product_price_seasons
+ - products_id
+ - price_season_types_id
+ - commissions_id
+ - start_date
+ - end_date
+ - currencies_id
+ - timings_id (payment timing)
+ 
+ product_attached_products
+ - products_id
+ - attached_products_id
+ 
+ product_quantities [tickets]
+ - products_id
+ - expiry_date
+ - quantity_allocated
+ - quantity_sold
+ 
+ product_cost_price_breaks
+ - price_seasons_id
+ - break_number
+ - amount
+ - age_min
+ - age_max
+ 
+ product_sell_price_breaks
+ - price_seasons_id
+ - break_number
+ - currencies_id
+ - amount
+ - age_min
+ - age_max
+ 
+ products_third_party
+ - products_id
+ - third_parties_id
+ - product_code
+ 
+ product_blocks
+ - products_id
+ - block_date
+ - quantity_sold
+ - quantity_allocated
+ - quantity_sold
+ - quantity_held
+ - is_blocked_out
+ 
+ integration_third_parties
+ - third_party_name
+ 
+ currency_currencies
+ - currency_code
+ - currency_name
+ - is_active
+ - weighting
+
+ currency_exchange_rates
+ - base_currencies_id
+ - foreign_currencies_id
+ - buy_rate
+ - sell_rate
+ - sample_rate

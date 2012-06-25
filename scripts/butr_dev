@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cd ~/Projects/node.js/butr
+
+echo "Removing Logs"
+rm logs/*.log
+
+echo "Restarting Memcached"
+sudo service memcached restart
+
+echo "Flushing Redis Keys"
+redis-cli flushall
+
+echo "Starting Butr"
+node server.js
+

@@ -1,0 +1,41 @@
+{
+  "Language": "en",
+  "Logging": {
+    "Level": 7,
+    "SystemFilePath": "logs/butr.log",
+    "HttpFilePath": "logs/http.log",
+    "MessageFilePath": "logs/message.log",
+    "Console": "true"
+  },
+  "Sql": {
+    "Engine": "mysql",
+    "Name": "butr",
+    "Host": "localhost",
+    "Port": 3306,
+    "User": "butr",
+    "Pass": "butr"
+  },
+  "NoSql": {
+    "Engine": "redis",
+    "Name": "",
+    "Host": "localhost",
+    "Port": 6379,
+    "User": "",
+    "Pass": ""
+  },
+  "Gateway": {
+    "VirtualHost": "butr-server.node.local",
+    "Protocol": "http",
+    "Port": 3000,      
+    "Key": "",
+    "Cert": "",
+    "Cluster": 2
+  },
+  "Cache": {
+   "Engine": "memcached",
+   "Host": "localhost",
+   "Port": 11211,
+   "Weight": 1,
+   "Lifetime": 300
+  }
+}

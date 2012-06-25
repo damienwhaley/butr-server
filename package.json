@@ -1,0 +1,67 @@
+/*
+ * Butr Universal Travel Reservations
+ * A bleeding edge business management system for the travel industry.
+ * 
+ * Copyright (C) 2012 Whalebone Studios and contributors.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+{
+  "name": "butr",
+  "preferGlobal: "false",  
+  "version": "0.0.1",
+  "author": "Whalebone Studios <butr@whalebonestudios.com>",
+  "contributors": [
+    {
+      "name": "Damien Whaley",
+      "email": "damien@whalebonestudios.com"
+    }
+  ],
+  "private": true,
+  "main": "./server.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "travel",
+    "butr",
+    "reservations",
+    "business",
+    "management"
+  ]
+  "dependencies": {
+    "cloneextend": ">=0.0.3",
+    "dom-js": ">=0.0.8",
+    "express": ">=3.0.0alpha5",
+    "i18n": ">=0.3.5",
+    "log": ">=1.3.0",
+    "memcached": ">=0.0.10",
+    "moment": ">=1.6.2",
+    "mysql": ">=mysql-2.0.0-preview",
+    "node-uuid": ">=1.3.3",
+    "node-xml": ">=1.0.1",
+    "redis": ">=0.7.2",
+    "validator": ">=0.4.7"
+  },
+  "devDependencies": {
+    "jshint": ">0.7.1",
+    "jslint": ">=0.1.8",
+    "long-stack-traces": ">=0.1.2"
+  },
+  "license": "AGPLv3",
+  "engine": {
+    "node": ">=0.6.18"
+  }
+}

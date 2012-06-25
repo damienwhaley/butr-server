@@ -1,0 +1,72 @@
+-- Add Message
+SELECT f_BinToUuid(_table_uuid) INTO @message_uuid
+FROM system_messages
+WHERE magic='fetch_global_title_configuration';
+
+SELECT f_BinToUuid(_table_uuid) INTO @permission_uuid
+FROM security_permissions
+WHERE magic='configuration_read_only';
+
+SELECT @message_uuid AS '@message_uuid', @permission_uuid AS '@permission_uuid';
+
+CALL p_security_AddMessagePermission(UUID(),
+    UUID(),
+    @message_uuid,
+    @permission_uuid,
+    0,
+    0);
+
+CALL p_security_GenerateEffectivePermission (UUID(),
+    UUID(),
+    '2784dd1e-6006-11e1-8f32-001c421dce29');
+
+SELECT mp._table_id, m.message_name, p.permission_name, mp.do_partition_check,
+    mp.run_unauthenticated
+FROM security_messages_permissions AS mp
+    LEFT JOIN system_messages AS m ON m._table_id=mp.messages_id
+        AND m._system_is_valid = 1 AND m._system_is_deleted = 0
+    LEFT JOIN security_permissions AS p ON p._table_id=mp.permissions_id
+        AND p._system_is_valid = 1 AND p._system_is_deleted = 0
+WHERE mp._system_is_valid = 1 AND mp._system_is_deleted = 0
+ORDER BY m.message_name;
+
+-- ## Add a dock item
+
+SET @SessionUUID := UUID();
+SET @TransactionUUID := UUID();
+
+SELECT f_BinToUuid(_table_uuid) INTO @DockItemUuid
+FROM system_dock_items
+WHERE item_name = 'Message Administration'
+LIMIT 1;
+
+SELECT f_BinToUuid(_table_uuid) INTO @PermissionUuid
+FROM security_permissions
+WHERE magic = 'system_administer'
+LIMIT 1;
+
+SELECT @DockItemUuid AS '@DockItemUuid',
+    @PermissionUuid AS '@PermissionUuid';
+
+CALL p_security_AddDockItemPermission(@SessionUuid, @TransactionUuid, @DockItemUuid, @PermissionUuid);
+
+-- ## Add a dock sub item
+
+SET @SessionUUID := UUID();
+SET @TransactionUUID := UUID();
+
+SELECT f_BinToUuid(_table_uuid) INTO @DockSubitemUuid
+FROM system_dock_subitems
+WHERE subitem_name = 'Message Administration'
+LIMIT 1;
+
+SELECT f_BinToUuid(_table_uuid) INTO @PermissionUuid
+FROM security_permissions
+WHERE magic = 'system_read_only'
+LIMIT 1;
+
+SELECT @DockSubitemUuid AS '@DockSubitemUuid',
+    @PermissionUuid AS '@PermissionUuid';
+
+CALL p_security_AddDockSubitemPermission(@SessionUuid, @TransactionUuid, @DockSubitemUuid, @PermissionUuid);
+

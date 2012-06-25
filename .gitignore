@@ -1,0 +1,21 @@
+# Git Ignore file for butr
+
+# Butr folders to exclude
+logs/*.log
+
+# Node.js files folders to exclude
+node_modules/*
+*.{node,a,o,dylib}
+
+# Eclipse project files and folders
+.settings
+.settings/*
+.project
+
+# Random operating system files
+*.*~
+*.js~
+.DS_Store*
+ethumbs.db
+Icon?
+Thumbs.db

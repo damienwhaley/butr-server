@@ -1,0 +1,25 @@
+Node.js
+=======
+
+* clean up api_json have one check per line in all files.
+
+* figure out check_session_alive where session extended but redis does not think so...
+  it seems to allow you to execute a command and then it tels you it is not valid.
+  need to check the logic for the session to ensure that when it is not valid
+  that it will not allow you to execute and will bomb out straight away.
+
+* change references to app settings to a fetch from config.
+
+NEXT STEPS:
+
+* think about replication as a target /replication. need replication keys and
+  also new messages to do direct inserts on tables. Probably have p_replication_TableName
+  for each table to make it simple. must be able to do mulitple inserts per
+  command.
+ 
+* think about workflow/trigger events
+  
+* try uploads with formidable and AJAX (ebay tech site talks about it).
+
+* try static files with a static route
+
