@@ -2,6 +2,16 @@
 // Stored Procedures // (23 to go)
 ///////////////////////
 
+agent_commissions
+=================
+ * "ground_module"
+ * "transfer"
+ * "air"
+ * "single supplement"
+
+brochure_brochures
+==================
+
 configuration_globals
 =====================
 p_configuration_AddGlobal
@@ -25,6 +35,22 @@ p_configuration_ModifyGlobalTitle
 p_configuration_RemoveGlobalTitle
 p_configuration_FetchGlobalTitle
 p_configuration_ListGlobalTitle
+
+configuration_lookup_product_information_types
+==============================================
+ * "description"
+ * "web description"
+ * "extended description"
+
+configuration_lookup_product_price_season_types
+===============================================
+ * "per pax"
+ * "per product"
+ * "sliding scale"
+ * "per unit"
+ 
+configuration_lookup_product_reservation_text_types
+=================================================== 
 
 configuration_lookup_security_authentication_methods
 ===================================================
@@ -58,6 +84,18 @@ p_configuration_RemoveSystemLogType
 p_configuration_FetchSystemLogType
 p_configuration_ListSystemLogType
 
+currency_brochure_rates
+=======================
+
+currency_currencies
+===================
+
+currency_exchange_rates
+=======================
+
+integration_third_parties
+=========================
+
 location_countries
 ==================
 p_location_AddCountry
@@ -65,6 +103,54 @@ p_location_ModifyCountry
 p_location_RemoveCountry
 p_location_FetchCountry
 p_location_ListCountry
+
+principal_payment_timings
+=========================
+
+principal_principals
+====================
+
+product_alerts
+==============
+
+product_alternate_products
+==========================
+
+product_attached_products
+=========================
+
+product_blocks
+==============
+
+product_information
+===================
+
+product_price_cost_breaks
+=========================
+
+product_price_seasons
+=====================
+
+product_price_sell_breaks
+=========================
+
+product_products
+================
+
+product_products_partitions
+===========================
+
+product_quantities [tickets]
+==================
+
+product_reservation_request_texts
+=================================
+
+product_products_third_parties
+==============================
+
+product_voucher_texts
+=====================
 
 security_dock_items_permissions
 ===============================
@@ -288,6 +374,21 @@ p_system_RemoveTable
 p_system_FetchTable
 p_system_ListTable
 
+taxonomy_terms
+==============
+
+taxonomy_terms_principals
+=========================
+
+taxonomy_terms_products
+=======================
+
+taxonomy_terms_users
+====================
+
+taxonomy_vocabularies
+=====================
+
 user_groups
 ===========
 p_user_AddGroup
@@ -325,172 +426,3 @@ f_DateToOutput
 f_DateToString
 f_ShaToBin
 f_UuidToBin
-
-/////////
-// New //
-/////////
-
-taxonomy_vocabularies
- - vocbulary_name
- - display_name
- - modules_id
- 
- taxonomy_terms
- - term_name
- - display_name
- - vocabularies_id
- 
- taxonomy_terms_products
- - terms_id
- - vocabularies_id
- - products_id
- 
- principal_principals
- - principal_name
- - display_name
- 
- product_alerts
- - products_id
- - alert_name
- - content
- - start_date
- - finish_date
- - is_active
- 
- product_reservation_request_texts
- - products_id
- - content
- - reservation_text_types
- 
- product_alternate_products
- - products_id
- - alternate_products_id
- 
- configuration_lookup_product_information_types
- - name_label
- - display_label
- - is_active
- - magic
- - weighting
- * "description"
- * "web description"
- * "extended description"
- 
- configuration_lookup_product_price_season_types
- - name_label
- - display_label
- - is_active
- - weighting
- - magic
- * "per pax"
- * "per product"
- * "sliding scale"
- * "per unit"
- 
- configuration_lookup_product_reservation_text_type
- - name_label
- - display_label
- - is_active
- - weighting
- - magic
- 
- product_informations
- - products_id
- - weighting
- - information_name
- - description
- - information_types_id
- 
- product_voucher_texts
- - products_id
- - content
- - voucher_name
- - picture_path
- - caption
- 
- agent_commissions
- * "ground_module"
- * "transfer"
- * "air"
- * "single supplement"
- 
- product_products_partitions
- - products_id
- - partitions_id
- 
- brochure_brochures
- - brochure_name
- 
- product_products
- - principals_id
- - product_name
- - product_code
- - brochures_id
- - capacity
- - nights
- - lead_days
- - is_active
- 
- product_price_seasons
- - products_id
- - price_season_types_id
- - commissions_id
- - start_date
- - end_date
- - currencies_id
- - timings_id (payment timing)
- 
- product_attached_products
- - products_id
- - attached_products_id
- 
- product_quantities [tickets]
- - products_id
- - expiry_date
- - quantity_allocated
- - quantity_sold
- 
- product_cost_price_breaks
- - price_seasons_id
- - break_number
- - amount
- - age_min
- - age_max
- 
- product_sell_price_breaks
- - price_seasons_id
- - break_number
- - currencies_id
- - amount
- - age_min
- - age_max
- 
- products_third_party
- - products_id
- - third_parties_id
- - product_code
- 
- product_blocks
- - products_id
- - block_date
- - quantity_sold
- - quantity_allocated
- - quantity_sold
- - quantity_held
- - is_blocked_out
- 
- integration_third_parties
- - third_party_name
- 
- currency_currencies
- - currency_code
- - currency_name
- - is_active
- - weighting
-
- currency_exchange_rates
- - base_currencies_id
- - foreign_currencies_id
- - buy_rate
- - sell_rate
- - sample_rate

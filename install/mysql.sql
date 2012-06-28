@@ -18,22 +18,31 @@ USE `butr`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `system_tables`
+-- Table structure for table `configuration_lookup_security_authentication_methods`
 --
 
-DROP TABLE IF EXISTS `system_tables`;
+DROP TABLE IF EXISTS `configuration_lookup_security_authentication_methods`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system_tables` (
-  `_table_id` bigint(20) DEFAULT NULL,
-  `_table_uuid` binary(16) DEFAULT NULL,
+CREATE TABLE `configuration_lookup_security_authentication_methods` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
   `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
   `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
-  `table_name` varchar(255) DEFAULT NULL,
-  `current_id` bigint(20) NOT NULL DEFAULT '0',
-  `mutex` bit(1) NOT NULL DEFAULT b'0',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `name_label` varchar(100) DEFAULT NULL,
+  `display_label` varchar(100) DEFAULT NULL,
+  `description` text,
+  `weighting` smallint(6) DEFAULT '0',
+  `magic` varchar(70) DEFAULT NULL,
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,6 +70,935 @@ CREATE TABLE `security_dock_subitems_permissions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `system_modules`
+--
+
+DROP TABLE IF EXISTS `system_modules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `system_modules` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `module_name` varchar(100) DEFAULT NULL,
+  `magic` varchar(70) DEFAULT NULL,
+  `description` text,
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `taxonomy_terms_users`
+--
+
+DROP TABLE IF EXISTS `taxonomy_terms_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `taxonomy_terms_users` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `vocabularies_id` bigint(20) DEFAULT NULL,
+  `terms_id` bigint(20) DEFAULT NULL,
+  `users_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `security_registrations`
+--
+
+DROP TABLE IF EXISTS `security_registrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `security_registrations` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `api_public` binary(16) DEFAULT NULL,
+  `api_private` binary(32) DEFAULT NULL,
+  `security_client_types_id` bigint(20) DEFAULT NULL,
+  `description` text,
+  `created` timestamp NULL DEFAULT NULL,
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `system_dock_items`
+--
+
+DROP TABLE IF EXISTS `system_dock_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `system_dock_items` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `docks_id` bigint(20) DEFAULT NULL,
+  `system_dock_types_id` bigint(20) DEFAULT NULL,
+  `security_client_types_id` bigint(20) DEFAULT NULL,
+  `item_name` varchar(100) DEFAULT NULL,
+  `display_name` varchar(100) DEFAULT NULL,
+  `description` text,
+  `weighting` smallint(6) DEFAULT NULL,
+  `picture_path` varchar(500) DEFAULT NULL,
+  `item_action` varchar(500) DEFAULT NULL,
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `configuration_lookup_global_languages`
+--
+
+DROP TABLE IF EXISTS `configuration_lookup_global_languages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `configuration_lookup_global_languages` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `name_label` varchar(100) DEFAULT NULL,
+  `display_label` varchar(100) DEFAULT NULL,
+  `description` text,
+  `language_code` varchar(20) DEFAULT NULL,
+  `language_family` varchar(20) DEFAULT NULL,
+  `countries_id` bigint(20) DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT '0',
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `configuration_lookup_product_reservation_text_types`
+--
+
+DROP TABLE IF EXISTS `configuration_lookup_product_reservation_text_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `configuration_lookup_product_reservation_text_types` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `name_label` varchar(100) DEFAULT NULL,
+  `display_label` varchar(100) DEFAULT NULL,
+  `magic` varchar(70) DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `security_users_permissions`
+--
+
+DROP TABLE IF EXISTS `security_users_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `security_users_permissions` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `users_id` bigint(20) DEFAULT NULL,
+  `partitions_id` bigint(20) DEFAULT NULL,
+  `permissions_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `security_messages_permissions`
+--
+
+DROP TABLE IF EXISTS `security_messages_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `security_messages_permissions` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `messages_id` bigint(20) DEFAULT NULL,
+  `permissions_id` bigint(20) DEFAULT NULL,
+  `do_partition_check` bit(1) NOT NULL DEFAULT b'0',
+  `run_unauthenticated` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `system_log_queries`
+--
+
+DROP TABLE IF EXISTS `system_log_queries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `system_log_queries` (
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `session_uuid` binary(16) DEFAULT NULL,
+  `transaction_uuid` binary(16) DEFAULT NULL,
+  `sql_query` text,
+  `log_timestamp` timestamp NULL DEFAULT NULL,
+  `users_id` bigint(20) DEFAULT NULL,
+  `execution_time` int(11) DEFAULT NULL,
+  `is_cacheable` bit(1) NOT NULL DEFAULT b'0',
+  `result_from_cache` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17698 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `system_log_transaction_details`
+--
+
+DROP TABLE IF EXISTS `system_log_transaction_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `system_log_transaction_details` (
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `transaction_id` bigint(20) DEFAULT NULL,
+  `tables_id` bigint(20) DEFAULT NULL,
+  `foreign_tables_id` bigint(20) DEFAULT NULL,
+  `field_name` varchar(255) DEFAULT NULL,
+  `new_text` text,
+  `new_integer` bigint(20) DEFAULT NULL,
+  `new_float` double DEFAULT NULL,
+  `new_datetime` datetime DEFAULT NULL,
+  `new_uuid` binary(16) DEFAULT NULL,
+  `new_bit` bit(1) DEFAULT b'0',
+  `new_sha` binary(32) DEFAULT NULL,
+  `old_text` text,
+  `old_integer` bigint(20) DEFAULT NULL,
+  `old_float` double DEFAULT NULL,
+  `old_datetime` datetime DEFAULT NULL,
+  `old_uuid` binary(16) DEFAULT NULL,
+  `old_bit` bit(1) DEFAULT b'0',
+  `old_sha` binary(32) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `agent_commissions`
+--
+
+DROP TABLE IF EXISTS `agent_commissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `agent_commissions` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `commission_name` varchar(100) DEFAULT NULL,
+  `display_label` varchar(100) DEFAULT NULL,
+  `commission_code` varchar(20) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `taxonomy_terms`
+--
+
+DROP TABLE IF EXISTS `taxonomy_terms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `taxonomy_terms` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `vocabularies_id` bigint(20) DEFAULT NULL,
+  `term_name` varchar(100) DEFAULT NULL,
+  `display_name` varchar(100) DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `currency_exchange_rates`
+--
+
+DROP TABLE IF EXISTS `currency_exchange_rates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `currency_exchange_rates` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `base_currencies_id` bigint(20) DEFAULT NULL,
+  `foreign_currencies_id` bigint(20) DEFAULT NULL,
+  `buy_rate` decimal(19,4) DEFAULT NULL,
+  `sell_rate` decimal(19,4) DEFAULT NULL,
+  `sample_rate` decimal(19,4) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `security_nonces`
+--
+
+DROP TABLE IF EXISTS `security_nonces`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `security_nonces` (
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sessions_id` bigint(20) DEFAULT NULL,
+  `nonce` binary(16) DEFAULT NULL,
+  `first_used` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=446 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `principal_payment_timings`
+--
+
+DROP TABLE IF EXISTS `principal_payment_timings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `principal_payment_timings` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `timing_name` varchar(100) DEFAULT NULL,
+  `display_name` varchar(100) DEFAULT NULL,
+  `timing_code` varchar(20) DEFAULT NULL,
+  `description` text,
+  `deposit_date` date DEFAULT NULL,
+  `deposit_days` smallint(6) DEFAULT NULL,
+  `intermediate_date` date DEFAULT NULL,
+  `intermediate_days` smallint(6) DEFAULT NULL,
+  `final_date` date DEFAULT NULL,
+  `final_days` smallint(6) DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_products`
+--
+
+DROP TABLE IF EXISTS `product_products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_products` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `product_name` varchar(100) DEFAULT NULL,
+  `display_name` varchar(100) DEFAULT NULL,
+  `product_code` varchar(20) DEFAULT NULL,
+  `principals_id` bigint(20) DEFAULT NULL,
+  `brochures_id` bigint(20) DEFAULT NULL,
+  `capacity` smallint(6) DEFAULT NULL,
+  `nights` smallint(6) DEFAULT NULL,
+  `lead_days` smallint(6) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `taxonomy_terms_principals`
+--
+
+DROP TABLE IF EXISTS `taxonomy_terms_principals`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `taxonomy_terms_principals` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `vocabularies_id` bigint(20) DEFAULT NULL,
+  `terms_id` bigint(20) DEFAULT NULL,
+  `principals_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `security_sessions`
+--
+
+DROP TABLE IF EXISTS `security_sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `security_sessions` (
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_table_uuid` binary(16) DEFAULT NULL,
+  `users_id` bigint(20) NOT NULL,
+  `registrations_id` bigint(20) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `expiry` datetime NOT NULL,
+  `data` text NOT NULL,
+  `language_code` varchar(20) DEFAULT NULL,
+  `session_length` int(11) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=487 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_alternate_products`
+--
+
+DROP TABLE IF EXISTS `product_alternate_products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_alternate_products` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
+  `alternate_products_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `user_users`
+--
+
+DROP TABLE IF EXISTS `user_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_users` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `global_titles_id` bigint(20) DEFAULT NULL,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `preferred_global_languages_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `system_messages`
+--
+
+DROP TABLE IF EXISTS `system_messages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `system_messages` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `message_name` varchar(100) DEFAULT NULL,
+  `modules_id` bigint(20) DEFAULT NULL,
+  `magic` varchar(70) DEFAULT NULL,
+  `description` text,
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_attached_products`
+--
+
+DROP TABLE IF EXISTS `product_attached_products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_attached_products` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
+  `attached_products_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `location_countries`
+--
+
+DROP TABLE IF EXISTS `location_countries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `location_countries` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `country_name` varchar(100) DEFAULT NULL,
+  `display_name` varchar(100) DEFAULT NULL,
+  `description` text,
+  `country_code` varchar(20) DEFAULT NULL,
+  `alternate_code` varchar(20) DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT '0',
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `system_string_translations`
+--
+
+DROP TABLE IF EXISTS `system_string_translations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `system_string_translations` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `tables_id` bigint(20) DEFAULT NULL,
+  `source` text,
+  `translation` text,
+  `global_languages_id` bigint(20) DEFAULT NULL,
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `brochure_brochures`
+--
+
+DROP TABLE IF EXISTS `brochure_brochures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `brochure_brochures` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `brochure_name` varchar(100) DEFAULT NULL,
+  `display_name` varchar(100) DEFAULT NULL,
+  `brochure_code` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `system_dock_subitems`
+--
+
+DROP TABLE IF EXISTS `system_dock_subitems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `system_dock_subitems` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `dock_items_id` bigint(20) DEFAULT NULL,
+  `system_dock_types_id` bigint(20) DEFAULT NULL,
+  `security_client_types_id` bigint(20) DEFAULT NULL,
+  `subitem_name` varchar(100) DEFAULT NULL,
+  `display_name` varchar(100) DEFAULT NULL,
+  `description` text,
+  `weighting` smallint(6) DEFAULT NULL,
+  `picture_path` varchar(500) DEFAULT NULL,
+  `subitem_action` varchar(500) DEFAULT NULL,
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `security_permissions`
+--
+
+DROP TABLE IF EXISTS `security_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `security_permissions` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `modules_id` bigint(20) DEFAULT NULL,
+  `permission_name` varchar(100) NOT NULL,
+  `description` text,
+  `magic` varchar(70) DEFAULT NULL,
+  `importance` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_price_cost_breaks`
+--
+
+DROP TABLE IF EXISTS `product_price_cost_breaks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_price_cost_breaks` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `price_seasons_id` bigint(20) DEFAULT NULL,
+  `break_number` tinyint(4) DEFAULT NULL,
+  `amount` decimal(19,4) DEFAULT NULL,
+  `begin_age` tinyint(4) DEFAULT NULL,
+  `end_age` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `currency_brochure_rates`
+--
+
+DROP TABLE IF EXISTS `currency_brochure_rates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `currency_brochure_rates` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `brochures_id` bigint(20) DEFAULT NULL,
+  `base_currencies_id` bigint(20) DEFAULT NULL,
+  `foreign_currencies_id` bigint(20) DEFAULT NULL,
+  `buy_rate` decimal(19,4) DEFAULT NULL,
+  `sell_rate` decimal(19,4) DEFAULT NULL,
+  `sample_rate` decimal(19,4) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `configuration_lookup_global_titles`
+--
+
+DROP TABLE IF EXISTS `configuration_lookup_global_titles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `configuration_lookup_global_titles` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `name_label` varchar(100) DEFAULT NULL,
+  `display_label` varchar(100) DEFAULT NULL,
+  `description` text,
+  `weighting` smallint(6) DEFAULT '0',
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `integration_third_parties`
+--
+
+DROP TABLE IF EXISTS `integration_third_parties`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `integration_third_parties` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `third_party_name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_blocks`
+--
+
+DROP TABLE IF EXISTS `product_blocks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_blocks` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
+  `block_date` date DEFAULT NULL,
+  `quantity_total` smallint(6) DEFAULT NULL,
+  `quantity_allocated` smallint(6) DEFAULT NULL,
+  `quantity_sold` smallint(6) DEFAULT NULL,
+  `quantity_held` smallint(6) DEFAULT NULL,
+  `is_blacked_out` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `configuration_lookup_product_price_season_types`
+--
+
+DROP TABLE IF EXISTS `configuration_lookup_product_price_season_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `configuration_lookup_product_price_season_types` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `name_label` varchar(100) DEFAULT NULL,
+  `display_label` varchar(100) DEFAULT NULL,
+  `magic` varchar(70) DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `system_tables`
+--
+
+DROP TABLE IF EXISTS `system_tables`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `system_tables` (
+  `_table_id` bigint(20) DEFAULT NULL,
+  `_table_uuid` binary(16) DEFAULT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `table_name` varchar(255) DEFAULT NULL,
+  `current_id` bigint(20) NOT NULL DEFAULT '0',
+  `mutex` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_information`
+--
+
+DROP TABLE IF EXISTS `product_information`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_information` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
+  `information_name` varchar(100) DEFAULT NULL,
+  `magic` varchar(70) DEFAULT NULL,
+  `description` text,
+  `weighting` smallint(6) DEFAULT NULL,
+  `information_types_id` bigint(20) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `system_log_messages`
 --
 
@@ -78,7 +1016,7 @@ CREATE TABLE `system_log_messages` (
   `request` text,
   `response` text,
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11140 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11158 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,55 +1074,21 @@ CREATE TABLE `security_users_credentials` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `security_registrations`
+-- Table structure for table `security_effective_permissions`
 --
 
-DROP TABLE IF EXISTS `security_registrations`;
+DROP TABLE IF EXISTS `security_effective_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `security_registrations` (
-  `_table_id` bigint(20) NOT NULL,
-  `_table_uuid` binary(16) NOT NULL,
+CREATE TABLE `security_effective_permissions` (
   `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_system_valid_from` timestamp NULL DEFAULT NULL,
-  `_system_valid_to` timestamp NULL DEFAULT NULL,
-  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
-  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
-  `_system_transaction_uuid` binary(16) DEFAULT NULL,
-  `_system_previous_id` bigint(20) DEFAULT NULL,
-  `_system_next_id` bigint(20) DEFAULT NULL,
-  `api_public` binary(16) DEFAULT NULL,
-  `api_private` binary(32) DEFAULT NULL,
-  `security_client_types_id` bigint(20) DEFAULT NULL,
-  `description` text,
-  `created` timestamp NULL DEFAULT NULL,
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `security_dock_items_permissions`
---
-
-DROP TABLE IF EXISTS `security_dock_items_permissions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `security_dock_items_permissions` (
-  `_table_id` bigint(20) NOT NULL,
-  `_table_uuid` binary(16) NOT NULL,
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_system_valid_from` timestamp NULL DEFAULT NULL,
-  `_system_valid_to` timestamp NULL DEFAULT NULL,
-  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
-  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
-  `_system_transaction_uuid` binary(16) DEFAULT NULL,
-  `_system_previous_id` bigint(20) DEFAULT NULL,
-  `_system_next_id` bigint(20) DEFAULT NULL,
-  `dock_items_id` bigint(20) DEFAULT NULL,
+  `users_id` bigint(20) DEFAULT NULL,
   `permissions_id` bigint(20) DEFAULT NULL,
+  `partitions_id` bigint(20) DEFAULT NULL,
+  `magic` varchar(70) DEFAULT NULL,
+  `setting` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1620 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,43 +1117,11 @@ CREATE TABLE `system_dock_tabs` (
   `display_name` varchar(100) DEFAULT NULL,
   `description` text,
   `weighting` smallint(6) DEFAULT NULL,
-  `icon` varchar(500) DEFAULT NULL,
+  `picture_path` varchar(500) DEFAULT NULL,
   `tab_action` varchar(500) DEFAULT NULL,
   `is_active` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`_system_auto_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `system_dock_items`
---
-
-DROP TABLE IF EXISTS `system_dock_items`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system_dock_items` (
-  `_table_id` bigint(20) NOT NULL,
-  `_table_uuid` binary(16) NOT NULL,
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_system_valid_from` timestamp NULL DEFAULT NULL,
-  `_system_valid_to` timestamp NULL DEFAULT NULL,
-  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
-  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
-  `_system_transaction_uuid` binary(16) DEFAULT NULL,
-  `_system_previous_id` bigint(20) DEFAULT NULL,
-  `_system_next_id` bigint(20) DEFAULT NULL,
-  `docks_id` bigint(20) DEFAULT NULL,
-  `system_dock_types_id` bigint(20) DEFAULT NULL,
-  `security_client_types_id` bigint(20) DEFAULT NULL,
-  `item_name` varchar(100) DEFAULT NULL,
-  `display_name` varchar(100) DEFAULT NULL,
-  `description` text,
-  `weighting` smallint(6) DEFAULT NULL,
-  `icon` varchar(500) DEFAULT NULL,
-  `item_action` varchar(500) DEFAULT NULL,
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,36 +1152,6 @@ CREATE TABLE `system_field_translations` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `configuration_lookup_global_languages`
---
-
-DROP TABLE IF EXISTS `configuration_lookup_global_languages`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `configuration_lookup_global_languages` (
-  `_table_id` bigint(20) NOT NULL,
-  `_table_uuid` binary(16) NOT NULL,
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_system_valid_from` timestamp NULL DEFAULT NULL,
-  `_system_valid_to` timestamp NULL DEFAULT NULL,
-  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
-  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
-  `_system_transaction_uuid` binary(16) DEFAULT NULL,
-  `_system_previous_id` bigint(20) DEFAULT NULL,
-  `_system_next_id` bigint(20) DEFAULT NULL,
-  `name_label` varchar(100) DEFAULT NULL,
-  `display_label` varchar(100) DEFAULT NULL,
-  `description` text,
-  `language_code` varchar(20) DEFAULT NULL,
-  `language_family` varchar(20) DEFAULT NULL,
-  `countries_id` bigint(20) DEFAULT NULL,
-  `weighting` smallint(6) DEFAULT '0',
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `system_log_transactions`
 --
 
@@ -329,17 +1171,17 @@ CREATE TABLE `system_log_transactions` (
   `system_log_types_id` bigint(20) DEFAULT NULL,
   `human_readable` text,
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1077 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1109 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `security_users_permissions`
+-- Table structure for table `taxonomy_vocabularies`
 --
 
-DROP TABLE IF EXISTS `security_users_permissions`;
+DROP TABLE IF EXISTS `taxonomy_vocabularies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `security_users_permissions` (
+CREATE TABLE `taxonomy_vocabularies` (
   `_table_id` bigint(20) NOT NULL,
   `_table_uuid` binary(16) NOT NULL,
   `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -350,37 +1192,13 @@ CREATE TABLE `security_users_permissions` (
   `_system_transaction_uuid` binary(16) DEFAULT NULL,
   `_system_previous_id` bigint(20) DEFAULT NULL,
   `_system_next_id` bigint(20) DEFAULT NULL,
-  `users_id` bigint(20) DEFAULT NULL,
-  `partitions_id` bigint(20) DEFAULT NULL,
-  `permissions_id` bigint(20) DEFAULT NULL,
+  `modules_id` bigint(20) DEFAULT NULL,
+  `vocabulary_name` varchar(100) DEFAULT NULL,
+  `display_name` varchar(100) DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `security_messages_permissions`
---
-
-DROP TABLE IF EXISTS `security_messages_permissions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `security_messages_permissions` (
-  `_table_id` bigint(20) NOT NULL,
-  `_table_uuid` binary(16) NOT NULL,
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_system_valid_from` timestamp NULL DEFAULT NULL,
-  `_system_valid_to` timestamp NULL DEFAULT NULL,
-  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
-  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
-  `_system_transaction_uuid` binary(16) DEFAULT NULL,
-  `_system_previous_id` bigint(20) DEFAULT NULL,
-  `_system_next_id` bigint(20) DEFAULT NULL,
-  `messages_id` bigint(20) DEFAULT NULL,
-  `permissions_id` bigint(20) DEFAULT NULL,
-  `do_partition_check` bit(1) NOT NULL DEFAULT b'0',
-  `run_unauthenticated` bit(1) NOT NULL DEFAULT b'0',
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -433,34 +1251,13 @@ CREATE TABLE `system_partitions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `system_log_queries`
+-- Table structure for table `security_dock_items_permissions`
 --
 
-DROP TABLE IF EXISTS `system_log_queries`;
+DROP TABLE IF EXISTS `security_dock_items_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system_log_queries` (
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `session_uuid` binary(16) DEFAULT NULL,
-  `transaction_uuid` binary(16) DEFAULT NULL,
-  `sql_query` text,
-  `log_timestamp` timestamp NULL DEFAULT NULL,
-  `users_id` bigint(20) DEFAULT NULL,
-  `execution_time` int(11) DEFAULT NULL,
-  `is_cacheable` bit(1) NOT NULL DEFAULT b'0',
-  `result_from_cache` bit(1) NOT NULL DEFAULT b'0',
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17654 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `configuration_lookup_security_authentication_methods`
---
-
-DROP TABLE IF EXISTS `configuration_lookup_security_authentication_methods`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `configuration_lookup_security_authentication_methods` (
+CREATE TABLE `security_dock_items_permissions` (
   `_table_id` bigint(20) NOT NULL,
   `_table_uuid` binary(16) NOT NULL,
   `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -471,14 +1268,38 @@ CREATE TABLE `configuration_lookup_security_authentication_methods` (
   `_system_transaction_uuid` binary(16) DEFAULT NULL,
   `_system_previous_id` bigint(20) DEFAULT NULL,
   `_system_next_id` bigint(20) DEFAULT NULL,
-  `name_label` varchar(100) DEFAULT NULL,
-  `display_label` varchar(100) DEFAULT NULL,
-  `description` text,
-  `weighting` smallint(6) DEFAULT '0',
-  `magic` varchar(70) DEFAULT NULL,
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  `dock_items_id` bigint(20) DEFAULT NULL,
+  `permissions_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_price_sell_breaks`
+--
+
+DROP TABLE IF EXISTS `product_price_sell_breaks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_price_sell_breaks` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `price_seasons_id` bigint(20) DEFAULT NULL,
+  `currencies_id` bigint(20) DEFAULT NULL,
+  `break_number` tinyint(4) DEFAULT NULL,
+  `amount` decimal(19,4) DEFAULT NULL,
+  `begin_age` tinyint(4) DEFAULT NULL,
+  `end_age` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -508,60 +1329,13 @@ CREATE TABLE `user_groups` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `system_log_transaction_details`
+-- Table structure for table `configuration_lookup_product_information_types`
 --
 
-DROP TABLE IF EXISTS `system_log_transaction_details`;
+DROP TABLE IF EXISTS `configuration_lookup_product_information_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system_log_transaction_details` (
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `transaction_id` bigint(20) DEFAULT NULL,
-  `tables_id` bigint(20) DEFAULT NULL,
-  `foreign_tables_id` bigint(20) DEFAULT NULL,
-  `field_name` varchar(255) DEFAULT NULL,
-  `new_text` text,
-  `new_integer` bigint(20) DEFAULT NULL,
-  `new_float` double DEFAULT NULL,
-  `new_datetime` datetime DEFAULT NULL,
-  `new_uuid` binary(16) DEFAULT NULL,
-  `new_bit` bit(1) DEFAULT b'0',
-  `new_sha` binary(32) DEFAULT NULL,
-  `old_text` text,
-  `old_integer` bigint(20) DEFAULT NULL,
-  `old_float` double DEFAULT NULL,
-  `old_datetime` datetime DEFAULT NULL,
-  `old_uuid` binary(16) DEFAULT NULL,
-  `old_bit` bit(1) DEFAULT b'0',
-  `old_sha` binary(32) DEFAULT NULL,
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `security_nonces`
---
-
-DROP TABLE IF EXISTS `security_nonces`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `security_nonces` (
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `sessions_id` bigint(20) DEFAULT NULL,
-  `nonce` binary(16) DEFAULT NULL,
-  `first_used` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=445 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `system_dock_subitems`
---
-
-DROP TABLE IF EXISTS `system_dock_subitems`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system_dock_subitems` (
+CREATE TABLE `configuration_lookup_product_information_types` (
   `_table_id` bigint(20) NOT NULL,
   `_table_uuid` binary(16) NOT NULL,
   `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -572,18 +1346,13 @@ CREATE TABLE `system_dock_subitems` (
   `_system_transaction_uuid` binary(16) DEFAULT NULL,
   `_system_previous_id` bigint(20) DEFAULT NULL,
   `_system_next_id` bigint(20) DEFAULT NULL,
-  `dock_items_id` bigint(20) DEFAULT NULL,
-  `system_dock_types_id` bigint(20) DEFAULT NULL,
-  `security_client_types_id` bigint(20) DEFAULT NULL,
-  `subitem_name` varchar(100) DEFAULT NULL,
-  `display_name` varchar(100) DEFAULT NULL,
-  `description` text,
+  `name_label` varchar(100) DEFAULT NULL,
+  `display_label` varchar(100) DEFAULT NULL,
+  `magic` varchar(70) DEFAULT NULL,
   `weighting` smallint(6) DEFAULT NULL,
-  `icon` varchar(500) DEFAULT NULL,
-  `subitem_action` varchar(500) DEFAULT NULL,
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  `is_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -615,6 +1384,35 @@ CREATE TABLE `configuration_lookup_security_client_types` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `product_reservation_request_texts`
+--
+
+DROP TABLE IF EXISTS `product_reservation_request_texts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_reservation_request_texts` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
+  `reservation_text_types_id` bigint(20) DEFAULT NULL,
+  `content` text,
+  `picture_path` varchar(500) DEFAULT NULL,
+  `caption` varchar(200) DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT NULL,
+  `is_active` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `system_docks`
 --
 
@@ -637,20 +1435,20 @@ CREATE TABLE `system_docks` (
   `display_name` varchar(100) DEFAULT NULL,
   `description` text,
   `weighting` smallint(6) DEFAULT NULL,
-  `icon` varchar(500) DEFAULT NULL,
+  `picture_path` varchar(500) DEFAULT NULL,
   `is_active` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`_system_auto_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `system_modules`
+-- Table structure for table `product_quantities`
 --
 
-DROP TABLE IF EXISTS `system_modules`;
+DROP TABLE IF EXISTS `product_quantities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system_modules` (
+CREATE TABLE `product_quantities` (
   `_table_id` bigint(20) NOT NULL,
   `_table_uuid` binary(16) NOT NULL,
   `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -661,33 +1459,14 @@ CREATE TABLE `system_modules` (
   `_system_transaction_uuid` binary(16) DEFAULT NULL,
   `_system_previous_id` bigint(20) DEFAULT NULL,
   `_system_next_id` bigint(20) DEFAULT NULL,
-  `module_name` varchar(100) DEFAULT NULL,
-  `magic` varchar(70) DEFAULT NULL,
-  `description` text,
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  `products_id` bigint(20) DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `quantity_total` smallint(6) DEFAULT NULL,
+  `quantity_allocated` smallint(6) DEFAULT NULL,
+  `quantity_sold` smallint(6) DEFAULT NULL,
+  `quantity_held` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `security_sessions`
---
-
-DROP TABLE IF EXISTS `security_sessions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `security_sessions` (
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_table_uuid` binary(16) DEFAULT NULL,
-  `users_id` bigint(20) NOT NULL,
-  `registrations_id` bigint(20) NOT NULL,
-  `created` datetime DEFAULT NULL,
-  `expiry` datetime NOT NULL,
-  `data` text NOT NULL,
-  `language_code` varchar(20) DEFAULT NULL,
-  `session_length` int(11) DEFAULT NULL,
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=486 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -734,6 +1513,35 @@ CREATE TABLE `user_users_groups` (
   `_system_next_id` bigint(20) DEFAULT NULL,
   `users_id` bigint(20) DEFAULT NULL,
   `groups_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_alerts`
+--
+
+DROP TABLE IF EXISTS `product_alerts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_alerts` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
+  `alert_name` varchar(100) DEFAULT NULL,
+  `content` text,
+  `begin_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`_system_auto_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -795,13 +1603,13 @@ CREATE TABLE `configuration_lookup_system_dock_types` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `system_messages`
+-- Table structure for table `product_price_seasons`
 --
 
-DROP TABLE IF EXISTS `system_messages`;
+DROP TABLE IF EXISTS `product_price_seasons`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system_messages` (
+CREATE TABLE `product_price_seasons` (
   `_table_id` bigint(20) NOT NULL,
   `_table_uuid` binary(16) NOT NULL,
   `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -812,23 +1620,26 @@ CREATE TABLE `system_messages` (
   `_system_transaction_uuid` binary(16) DEFAULT NULL,
   `_system_previous_id` bigint(20) DEFAULT NULL,
   `_system_next_id` bigint(20) DEFAULT NULL,
-  `message_name` varchar(100) DEFAULT NULL,
-  `modules_id` bigint(20) DEFAULT NULL,
-  `magic` varchar(70) DEFAULT NULL,
-  `description` text,
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  `products_id` bigint(20) DEFAULT NULL,
+  `price_season_types_id` bigint(20) DEFAULT NULL,
+  `commissions_id` bigint(20) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `finish_date` date DEFAULT NULL,
+  `currencies_id` bigint(20) DEFAULT NULL,
+  `payment_timings_id` bigint(20) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `user_users`
+-- Table structure for table `taxonomy_terms_products`
 --
 
-DROP TABLE IF EXISTS `user_users`;
+DROP TABLE IF EXISTS `taxonomy_terms_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_users` (
+CREATE TABLE `taxonomy_terms_products` (
   `_table_id` bigint(20) NOT NULL,
   `_table_uuid` binary(16) NOT NULL,
   `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -839,23 +1650,21 @@ CREATE TABLE `user_users` (
   `_system_transaction_uuid` binary(16) DEFAULT NULL,
   `_system_previous_id` bigint(20) DEFAULT NULL,
   `_system_next_id` bigint(20) DEFAULT NULL,
-  `global_titles_id` bigint(20) DEFAULT NULL,
-  `first_name` varchar(100) DEFAULT NULL,
-  `last_name` varchar(100) DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `preferred_global_languages_id` bigint(20) DEFAULT NULL,
+  `vocabularies_id` bigint(20) DEFAULT NULL,
+  `terms_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `location_countries`
+-- Table structure for table `principal_principals`
 --
 
-DROP TABLE IF EXISTS `location_countries`;
+DROP TABLE IF EXISTS `principal_principals`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `location_countries` (
+CREATE TABLE `principal_principals` (
   `_table_id` bigint(20) NOT NULL,
   `_table_uuid` binary(16) NOT NULL,
   `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -866,69 +1675,11 @@ CREATE TABLE `location_countries` (
   `_system_transaction_uuid` binary(16) DEFAULT NULL,
   `_system_previous_id` bigint(20) DEFAULT NULL,
   `_system_next_id` bigint(20) DEFAULT NULL,
-  `country_name` varchar(100) DEFAULT NULL,
+  `principal_name` varchar(100) DEFAULT NULL,
   `display_name` varchar(100) DEFAULT NULL,
-  `description` text,
-  `country_code` varchar(20) DEFAULT NULL,
-  `alternate_code` varchar(20) DEFAULT NULL,
-  `weighting` smallint(6) DEFAULT '0',
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  `principal_code` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `system_string_translations`
---
-
-DROP TABLE IF EXISTS `system_string_translations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system_string_translations` (
-  `_table_id` bigint(20) NOT NULL,
-  `_table_uuid` binary(16) NOT NULL,
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_system_valid_from` timestamp NULL DEFAULT NULL,
-  `_system_valid_to` timestamp NULL DEFAULT NULL,
-  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
-  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
-  `_system_transaction_uuid` binary(16) DEFAULT NULL,
-  `_system_previous_id` bigint(20) DEFAULT NULL,
-  `_system_next_id` bigint(20) DEFAULT NULL,
-  `tables_id` bigint(20) DEFAULT NULL,
-  `source` text,
-  `translation` text,
-  `global_languages_id` bigint(20) DEFAULT NULL,
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `configuration_lookup_global_titles`
---
-
-DROP TABLE IF EXISTS `configuration_lookup_global_titles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `configuration_lookup_global_titles` (
-  `_table_id` bigint(20) NOT NULL,
-  `_table_uuid` binary(16) NOT NULL,
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_system_valid_from` timestamp NULL DEFAULT NULL,
-  `_system_valid_to` timestamp NULL DEFAULT NULL,
-  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
-  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
-  `_system_transaction_uuid` binary(16) DEFAULT NULL,
-  `_system_previous_id` bigint(20) DEFAULT NULL,
-  `_system_next_id` bigint(20) DEFAULT NULL,
-  `name_label` varchar(100) DEFAULT NULL,
-  `display_label` varchar(100) DEFAULT NULL,
-  `description` text,
-  `weighting` smallint(6) DEFAULT '0',
-  `is_active` bit(1) NOT NULL DEFAULT b'1',
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -964,33 +1715,6 @@ CREATE TABLE `configuration_globals` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `security_permissions`
---
-
-DROP TABLE IF EXISTS `security_permissions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `security_permissions` (
-  `_table_id` bigint(20) NOT NULL,
-  `_table_uuid` binary(16) NOT NULL,
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `_system_valid_from` timestamp NULL DEFAULT NULL,
-  `_system_valid_to` timestamp NULL DEFAULT NULL,
-  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
-  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
-  `_system_transaction_uuid` binary(16) DEFAULT NULL,
-  `_system_previous_id` bigint(20) DEFAULT NULL,
-  `_system_next_id` bigint(20) DEFAULT NULL,
-  `modules_id` bigint(20) DEFAULT NULL,
-  `permission_name` varchar(100) NOT NULL,
-  `description` text,
-  `magic` varchar(70) DEFAULT NULL,
-  `importance` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `security_docks_permissions`
 --
 
@@ -1015,24 +1739,6 @@ CREATE TABLE `security_docks_permissions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `security_effective_permissions`
---
-
-DROP TABLE IF EXISTS `security_effective_permissions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `security_effective_permissions` (
-  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `users_id` bigint(20) DEFAULT NULL,
-  `permissions_id` bigint(20) DEFAULT NULL,
-  `partitions_id` bigint(20) DEFAULT NULL,
-  `magic` varchar(70) DEFAULT NULL,
-  `setting` bit(1) NOT NULL DEFAULT b'0',
-  PRIMARY KEY (`_system_auto_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1620 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `security_roles_permissions`
 --
 
@@ -1052,6 +1758,110 @@ CREATE TABLE `security_roles_permissions` (
   `_system_next_id` bigint(20) DEFAULT NULL,
   `roles_id` bigint(20) DEFAULT NULL,
   `permissions_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_products_third_parties`
+--
+
+DROP TABLE IF EXISTS `product_products_third_parties`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_products_third_parties` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
+  `product_code` varchar(20) DEFAULT NULL,
+  `third_parties_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_voucher_texts`
+--
+
+DROP TABLE IF EXISTS `product_voucher_texts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_voucher_texts` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
+  `voucher_name` varchar(100) DEFAULT NULL,
+  `content` text,
+  `picture_path` varchar(500) DEFAULT NULL,
+  `caption` varchar(200) DEFAULT NULL,
+  `weighting` smallint(6) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `currency_currencies`
+--
+
+DROP TABLE IF EXISTS `currency_currencies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `currency_currencies` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `currency_name` varchar(100) DEFAULT NULL,
+  `currency_code` varchar(20) DEFAULT NULL,
+  `currency_symbol` varchar(20) DEFAULT NULL,
+  `is_active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`_system_auto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `product_products_partitions`
+--
+
+DROP TABLE IF EXISTS `product_products_partitions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_products_partitions` (
+  `_table_id` bigint(20) NOT NULL,
+  `_table_uuid` binary(16) NOT NULL,
+  `_system_auto_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `_system_valid_from` timestamp NULL DEFAULT NULL,
+  `_system_valid_to` timestamp NULL DEFAULT NULL,
+  `_system_is_deleted` bit(1) NOT NULL DEFAULT b'0',
+  `_system_is_valid` bit(1) NOT NULL DEFAULT b'1',
+  `_system_transaction_uuid` binary(16) DEFAULT NULL,
+  `_system_previous_id` bigint(20) DEFAULT NULL,
+  `_system_next_id` bigint(20) DEFAULT NULL,
+  `products_id` bigint(20) DEFAULT NULL,
+  `partitions_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`_system_auto_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -7686,7 +8496,7 @@ BEGIN
         di.description AS 'description',
         t.magic AS 'item_magic',
         di.weighting AS 'weighting',
-        di.icon AS 'icon',
+        di.picture_path AS 'picture_path',
         di.item_action AS 'item_action',
         f_BinToUuid(d._table_uuid) AS 'docks_uuid',
         p.permission_name AS 'permission_name',
@@ -7762,7 +8572,7 @@ BEGIN
         d.display_name AS 'display_name',
         d.description AS 'description',
         d.weighting AS 'weighting',
-        d.icon AS 'icon',
+        d.picture_path AS 'picture_path',
         p.permission_name AS 'permission_name',
         p.magic AS 'permission_magic'
     FROM security_docks_permissions AS dp
@@ -7834,7 +8644,7 @@ BEGIN
         ds.description AS 'description',
         t.magic AS 'subitem_magic',
         ds.weighting AS 'weighting',
-        ds.icon AS 'icon',
+        ds.picture_path AS 'picture_path',
         ds.subitem_action AS 'subitem_action',
         f_BinToUuid(d._table_uuid) AS 'docks_uuid',
         f_BinToUuid(di._table_uuid) AS 'dock_items_uuid',
@@ -7897,13 +8707,15 @@ BEGIN
     DECLARE v_UserId BIGINT;
     DECLARE v_SecurityClientTypeId BIGINT;
 
+    DROP TEMPORARY TABLE IF EXISTS temp_tab_permissions;
+
     CREATE TEMPORARY TABLE temp_tab_permissions (`_system_auto_id` BIGINT AUTO_INCREMENT,
         `_table_id` BIGINT,
         `_table_uuid` CHAR(36),
         `tab_name` VARCHAR(50) CHARSET utf8,
         `display_name` VARCHAR(50) CHARSET utf8,
         `weighting` SMALLINT,
-        `icon` VARCHAR(500) CHARSET utf8,
+        `picture_path` VARCHAR(500) CHARSET utf8,
         `tab_action` VARCHAR(500) CHARSET utf8,
         `dock_items_uuid` CHAR(36) CHARSET utf8,
         `dock_subitems_uuid` CHAR(36) CHARSET utf8,
@@ -7924,11 +8736,11 @@ BEGIN
         AND expiry >= UTC_TIMESTAMP();
 
     INSERT temp_tab_permissions (_table_uuid, tab_name,
-        display_name, weighting, icon,
+        display_name, weighting, picture_path,
         tab_action, dock_items_uuid, dock_subitems_uuid,
         permission_name, permission_magic, _table_id)
     SELECT f_BinToUuid(dt._table_uuid), dt.tab_name,
-        dt.display_name, dt.weighting, dt.icon,
+        dt.display_name, dt.weighting, dt.picture_path,
         dt.tab_action, f_BinToUuid(di._table_uuid), '',
         p.permission_name, p.magic, dt._table_id
     FROM security_dock_tabs_permissions AS dtp
@@ -7942,12 +8754,12 @@ BEGIN
     ORDER BY di.weighting DESC, di.item_name DESC, dt.weighting, dt.tab_name;
 
     INSERT temp_tab_permissions (_table_uuid, tab_name,
-        display_name, weighting, icon,
+        display_name, weighting, picture_path,
         tab_action, dock_items_uuid, dock_subitems_uuid,
         permission_name, permission_magic, _table_id)
     SELECT f_BinToUuid(dt._table_uuid),
         dt.tab_name, dt.display_name,
-        dt.weighting, dt.icon,
+        dt.weighting, dt.picture_path,
         dt.tab_action, '', f_BinToUuid(ds._table_uuid),
         p.permission_name, p.magic, dt._table_id
     FROM security_dock_tabs_permissions AS dtp
@@ -7965,7 +8777,7 @@ BEGIN
         t.display_name AS 'display_name',
         dt.description AS 'description',
         t.weighting AS 'weighting',
-        t.icon AS 'icon',
+        t.picture_path AS 'picture_path',
         t.tab_action AS 'tab_action',
         t.dock_items_uuid AS 'dock_items_uuid',
         t.dock_subitems_uuid AS 'dock_subitems_uuid',
@@ -10147,7 +10959,7 @@ DELIMITER ;;
     IN i_DisplayName VARCHAR(100) CHARSET utf8,
     IN i_Description TEXT CHARSET utf8,
     IN i_Weighting SMALLINT,
-    IN i_Icon VARCHAR(500) CHARSET utf8,
+    IN i_PicturePath VARCHAR(500) CHARSET utf8,
     IN i_IsActive BIT(1))
     MODIFIES SQL DATA
     SQL SECURITY INVOKER
@@ -10203,10 +11015,10 @@ BEGIN
         INSERT system_docks (_table_id, _table_uuid, _system_valid_from,
             _system_valid_to, _system_is_deleted, _system_is_valid, _system_transaction_uuid,
             _system_previous_id, _system_next_id, dock_name, display_name,
-            description, weighting, icon, is_active, security_client_types_id)
+            description, weighting, picture_path, is_active, security_client_types_id)
         VALUES (v_TableId, f_UuidToBin(v_TableUuid), UTC_TIMESTAMP(), NULL, 0, 1,
             f_UuidToBin(v_TransactionUuid), NULL, NULL, i_DockName, i_DisplayName,
-            i_Description, i_Weighting, i_Icon, i_IsActive, v_SecurityClientTypeId);
+            i_Description, i_Weighting, i_PicturePath, i_IsActive, v_SecurityClientTypeId);
 
         CALL p_system_UnlockTable('system_docks');
 
@@ -10244,7 +11056,7 @@ DELIMITER ;;
     IN i_DisplayName VARCHAR(100) CHARSET utf8,
     IN i_Description TEXT CHARSET utf8,
     IN i_Weighting SMALLINT,
-    IN i_Icon VARCHAR(500) CHARSET utf8,
+    IN i_PicturePath VARCHAR(500) CHARSET utf8,
     IN i_ItemAction VARCHAR(500) CHARSET utf8,
     IN i_IsActive BIT(1))
     MODIFIES SQL DATA
@@ -10314,11 +11126,11 @@ BEGIN
         INSERT system_dock_items (_table_id, _table_uuid, _system_valid_from,
             _system_valid_to, _system_is_deleted, _system_is_valid, _system_transaction_uuid,
             _system_previous_id, _system_next_id, item_name, display_name,
-            description, weighting, icon, is_active, item_action, system_dock_types_id,
+            description, weighting, picture_path, is_active, item_action, system_dock_types_id,
             docks_id, security_client_types_id)
         VALUES (v_TableId, f_UuidToBin(v_TableUuid), UTC_TIMESTAMP(), NULL, 0, 1,
             f_UuidToBin(v_TransactionUuid), NULL, NULL, i_ItemName, i_DisplayName,
-            i_Description, i_Weighting, i_Icon, i_IsActive, i_ItemAction,
+            i_Description, i_Weighting, i_PicturePath, i_IsActive, i_ItemAction,
             v_SystemDockTypeId, v_DockId, v_SecurityClientTypeId);
 
         CALL p_system_UnlockTable('system_dock_items');
@@ -10357,7 +11169,7 @@ DELIMITER ;;
     IN i_DisplayName VARCHAR(100) CHARSET utf8,
     IN i_Description TEXT CHARSET utf8,
     IN i_Weighting SMALLINT,
-    IN i_Icon VARCHAR(500) CHARSET utf8,
+    IN i_PicturePath VARCHAR(500) CHARSET utf8,
     IN i_SubitemAction VARCHAR(500) CHARSET utf8,
     IN i_IsActive BIT(1))
     MODIFIES SQL DATA
@@ -10427,11 +11239,11 @@ BEGIN
         INSERT system_dock_subitems (_table_id, _table_uuid, _system_valid_from,
             _system_valid_to, _system_is_deleted, _system_is_valid, _system_transaction_uuid,
             _system_previous_id, _system_next_id, subitem_name, display_name,
-            description, weighting, icon, is_active, subitem_action, system_dock_types_id,
+            description, weighting, picture_path, is_active, subitem_action, system_dock_types_id,
             dock_items_id, security_client_types_id)
         VALUES (v_TableId, f_UuidToBin(v_TableUuid), UTC_TIMESTAMP(), NULL, 0, 1,
             f_UuidToBin(v_TransactionUuid), NULL, NULL, i_SubitemName, i_DisplayName,
-            i_Description, i_Weighting, i_Icon, i_IsActive, i_SubitemAction,
+            i_Description, i_Weighting, i_PicturePath, i_IsActive, i_SubitemAction,
             v_SystemDockTypeId, v_DockItemId, v_SecurityClientTypeId);
 
         CALL p_system_UnlockTable('system_dock_subitems');
@@ -10471,7 +11283,7 @@ DELIMITER ;;
     IN i_DisplayName VARCHAR(100) CHARSET utf8,
     IN i_Description TEXT CHARSET utf8,
     IN i_Weighting SMALLINT,
-    IN i_Icon VARCHAR(500) CHARSET utf8,
+    IN i_PicturePath VARCHAR(500) CHARSET utf8,
     IN i_TabAction VARCHAR(500) CHARSET utf8,
     IN i_IsActive BIT(1))
     MODIFIES SQL DATA
@@ -10549,11 +11361,11 @@ BEGIN
         INSERT system_dock_tabs (_table_id, _table_uuid, _system_valid_from,
             _system_valid_to, _system_is_deleted, _system_is_valid, _system_transaction_uuid,
             _system_previous_id, _system_next_id, tab_name, display_name,
-            description, weighting, icon, is_active, tab_action, dock_items_id,
+            description, weighting, picture_path, is_active, tab_action, dock_items_id,
             dock_subitems_id, security_client_types_id, system_dock_types_id)
         VALUES (v_TableId, f_UuidToBin(v_TableUuid), UTC_TIMESTAMP(), NULL, 0, 1,
             f_UuidToBin(v_TransactionUuid), NULL, NULL, i_TabName, i_DisplayName,
-            i_Description, i_Weighting, i_Icon, i_IsActive, i_TabAction,
+            i_Description, i_Weighting, i_PicturePath, i_IsActive, i_TabAction,
             v_DockItemId, v_DockSubitemId, v_SecurityClientTypeId,
             v_SystemDockTypeId);
 
@@ -11161,7 +11973,7 @@ BEGIN
         d.display_name AS 'display_name',
         d.description AS 'description',
         d.weighting AS 'weighting',
-        d.icon AS 'icon',
+        d.picture_path AS 'picture_path',
         f_BitToOutput(d.is_active) AS 'is_active'
     FROM system_docks AS d
         LEFT OUTER JOIN configuration_lookup_security_client_types AS c
@@ -11233,7 +12045,7 @@ BEGIN
         di.display_name AS 'display_name',
         di.description AS 'description',
         di.weighting AS 'weighting',
-        di.icon AS 'icon',
+        di.picture_path AS 'picture_path',
         di.item_action AS 'item_action',
         f_BitToOutput(di.is_active) AS 'is_active'
     FROM system_dock_items AS di
@@ -11311,7 +12123,7 @@ BEGIN
         ds.display_name AS 'display_name',
         ds.description AS 'description',
         ds.weighting AS 'weighting',
-        ds.icon AS 'icon',
+        ds.picture_path AS 'picture_path',
         ds.subitem_action AS 'subitem_action',
         f_BitToOutput(ds.is_active) AS 'is_active'
     FROM system_dock_subitems AS ds
@@ -11392,7 +12204,7 @@ BEGIN
         t.display_name AS 'display_name',
         t.description AS 'description',
         t.weighting AS 'weighting',
-        t.icon AS 'icon',
+        t.picture_path AS 'picture_path',
         t.tab_action AS 'tab_action',
         f_BitToOutput(t.is_active) AS 'is_active'
     FROM system_dock_tabs AS t
@@ -13291,7 +14103,7 @@ DELIMITER ;;
     IN i_DisplayName VARCHAR(100) CHARSET utf8,
     IN i_Description TEXT CHARSET utf8,
     IN i_Weighting SMALLINT,
-    IN i_Icon VARCHAR(500) CHARSET utf8,
+    IN i_PicturePath VARCHAR(500) CHARSET utf8,
     IN i_IsActive BIT(1))
     MODIFIES SQL DATA
     SQL SECURITY INVOKER
@@ -13331,7 +14143,7 @@ BEGIN
     DECLARE v_old_DisplayName VARCHAR(100) CHARSET utf8;
     DECLARE v_old_Description TEXT CHARSET utf8;
     DECLARE v_old_Weighting SMALLINT;
-    DECLARE v_old_Icon VARCHAR(500) CHARSET utf8;
+    DECLARE v_old_PicturePath VARCHAR(500) CHARSET utf8;
     DECLARE v_old_SecurityClientTypeId BIGINT;
     DECLARE v_SecurityClientTypeId BIGINT;
     DECLARE v_old_SecurityClientTypeLookupLabel VARCHAR(100) CHARSET utf8;
@@ -13349,10 +14161,10 @@ BEGIN
     IF v_RowCount = 0 THEN
         SELECT f_BinToUuid(_table_uuid), _table_id, _system_auto_id,
             dock_name, is_active, display_name, description, weighting,
-            icon, security_client_types_id
+            picture_path, security_client_types_id
         INTO v_TableUuid, v_TableId, v_SystemPreviousId, v_old_DockName,
             v_old_IsActive, v_old_DisplayName, v_old_Description, v_old_Weighting,
-            v_old_Icon, v_old_SecurityClientTypeId
+            v_old_PicturePath, v_old_SecurityClientTypeId
         FROM system_docks
         WHERE _table_uuid = f_UuidToBin(i_TableUuid) AND _system_is_valid = 1
             AND _system_is_deleted = 0
@@ -13362,7 +14174,7 @@ BEGIN
             OR COALESCE(i_DisplayName, '') != COALESCE(v_old_DisplayName, '')
             OR COALESCE(i_Description, '') != COALESCE(v_old_Description, '')
             OR COALESCE(i_Weighting, 0) != COALESCE(v_old_Weighting, 0)
-            OR COALESCE(i_Icon, '') != COALESCE(v_old_Icon, '')
+            OR COALESCE(i_PicturePath, '') != COALESCE(v_old_PicturePath, '')
             OR COALESCE(i_IsActive, 0) != COALESCE(v_old_IsActive, 0)
             OR COALESCE(v_SecurityClientTypeId, 0) != COALESCE(v_old_SecurityClientTypeId) THEN
 
@@ -13380,11 +14192,11 @@ BEGIN
                 _system_valid_from, _system_valid_to, _system_is_deleted, _system_is_valid,
                 _system_transaction_uuid, _system_previous_id, _system_next_id,
                 dock_name, is_active, display_name, description, weighting,
-                icon, security_client_types_id)
+                picture_path, security_client_types_id)
             SELECT _table_id, _table_uuid, v_Timestamp, NULL,
                 0, 1, v_TransactionUuid, v_SystemPreviousId,
                 NULL, i_DockName, i_IsActive, i_DisplayName, i_Description, i_Weighting,
-                i_Icon, v_SecurityClientTypeId
+                i_PicturePath, v_SecurityClientTypeId
             FROM system_docks
             WHERE _system_auto_id = v_SystemPreviousId;
 
@@ -13444,10 +14256,10 @@ BEGIN
                     i_Weighting, 'Weighting', v_HumanReadable);
             END IF;
 
-            IF COALESCE(i_Icon, '') != COALESCE(v_old_Icon, '') THEN
+            IF COALESCE(i_PicturePath, '') != COALESCE(v_old_PicturePath, '') THEN
                 CALL p_system_LogTransactionDetailText(v_TransactionId,
-                    'system_docks', v_TableId, 'icon', v_old_Icon,
-                    i_Icon, 'Icon', v_HumanReadable);
+                    'system_docks', v_TableId, 'picture_path', v_old_PicturePath,
+                    i_PicturePath, 'Picture Path', v_HumanReadable);
             END IF;
 
             IF COALESCE(i_IsActive, 0) != COALESCE(v_old_IsActive, 0) THEN
@@ -13490,7 +14302,7 @@ DELIMITER ;;
     IN i_DisplayName VARCHAR(100) CHARSET utf8,
     IN i_Description TEXT CHARSET utf8,
     IN i_Weighting SMALLINT,
-    IN i_Icon VARCHAR(500) CHARSET utf8,
+    IN i_PicturePath VARCHAR(500) CHARSET utf8,
     IN i_ItemAction VARCHAR(500) CHARSET utf8,
     IN i_IsActive BIT(1))
     MODIFIES SQL DATA
@@ -13531,7 +14343,7 @@ BEGIN
     DECLARE v_old_DisplayName VARCHAR(100) CHARSET utf8;
     DECLARE v_old_Description TEXT CHARSET utf8;
     DECLARE v_old_Weighting SMALLINT;
-    DECLARE v_old_Icon VARCHAR(500) CHARSET utf8;
+    DECLARE v_old_PicturePath VARCHAR(500) CHARSET utf8;
     DECLARE v_DockId BIGINT;
     DECLARE v_old_DockId BIGINT;
     DECLARE v_SystemDockTypeId BIGINT;
@@ -13569,11 +14381,11 @@ BEGIN
     IF v_RowCount = 0 THEN
         SELECT f_BinToUuid(_table_uuid), _table_id, _system_auto_id,
             item_name, is_active, display_name, description, weighting,
-            icon, docks_id, system_dock_types_id, security_client_types_id,
+            picture_path, docks_id, system_dock_types_id, security_client_types_id,
             item_action
         INTO v_TableUuid, v_TableId, v_SystemPreviousId, v_old_ItemName,
             v_old_IsActive, v_old_DisplayName, v_old_Description, v_old_Weighting,
-            v_old_Icon, v_old_DockId, v_old_SystemDockTypeId, v_old_SecurityClientTypeId,
+            v_old_PicturePath, v_old_DockId, v_old_SystemDockTypeId, v_old_SecurityClientTypeId,
             v_old_ItemAction
         FROM system_dock_items
         WHERE _table_uuid = f_UuidToBin(i_TableUuid) AND _system_is_valid = 1
@@ -13584,7 +14396,7 @@ BEGIN
             OR COALESCE(i_DisplayName, '') != COALESCE(v_old_DisplayName, '')
             OR COALESCE(i_Description, '') != COALESCE(v_old_Description, '')
             OR COALESCE(i_Weighting, 0) != COALESCE(v_old_Weighting, 0)
-            OR COALESCE(i_Icon, '') != COALESCE(v_old_Icon, '')
+            OR COALESCE(i_PicturePath, '') != COALESCE(v_old_PicturePath, '')
             OR COALESCE(v_DockId, 0) != COALESCE(v_old_DockId, 0)
             OR COALESCE(v_SystemDockTypeId, 0) != COALESCE(v_old_SystemDockTypeId)
             OR COALESCE(i_IsActive, 0) != COALESCE(v_old_IsActive, 0)
@@ -13605,12 +14417,12 @@ BEGIN
                 _system_valid_from, _system_valid_to, _system_is_deleted, _system_is_valid,
                 _system_transaction_uuid, _system_previous_id, _system_next_id,
                 item_name, is_active, display_name, description, weighting,
-                icon, docks_id, system_dock_types_id, security_client_types_id,
+                picture_path, docks_id, system_dock_types_id, security_client_types_id,
                 item_action)
             SELECT _table_id, _table_uuid, v_Timestamp, NULL,
                 0, 1, v_TransactionUuid, v_SystemPreviousId,
                 NULL, i_ItemName, i_IsActive, i_DisplayName, i_Description, i_Weighting,
-                i_Icon, v_DockId, v_SystemDockTypeId, v_SecurityClientTypeId,
+                i_PicturePath, v_DockId, v_SystemDockTypeId, v_SecurityClientTypeId,
                 i_ItemAction
             FROM system_dock_items
             WHERE _system_auto_id = v_SystemPreviousId;
@@ -13652,10 +14464,10 @@ BEGIN
                     i_Weighting, 'Weighting', v_HumanReadable);
             END IF;
 
-            IF COALESCE(i_Icon, '') != COALESCE(v_old_Icon, '') THEN
+            IF COALESCE(i_PicturePath, '') != COALESCE(v_old_PicturePath, '') THEN
                 CALL p_system_LogTransactionDetailText(v_TransactionId,
-                    'system_dock_items', v_TableId, 'icon', v_old_Icon,
-                    i_Icon, 'Icon', v_HumanReadable);
+                    'system_dock_items', v_TableId, 'picture_path', v_old_PicturePath,
+                    i_PicturePath, 'Picture Path', v_HumanReadable);
             END IF;
 
             IF COALESCE(v_DockId, 0) != COALESCE(v_old_DockId, 0) THEN
@@ -13761,7 +14573,7 @@ DELIMITER ;;
     IN i_DisplayName VARCHAR(100) CHARSET utf8,
     IN i_Description TEXT CHARSET utf8,
     IN i_Weighting SMALLINT,
-    IN i_Icon VARCHAR(500) CHARSET utf8,
+    IN i_PicturePath VARCHAR(500) CHARSET utf8,
     IN i_SubitemAction VARCHAR(500) CHARSET utf8,
     IN i_IsActive BIT(1))
     MODIFIES SQL DATA
@@ -13802,7 +14614,7 @@ BEGIN
     DECLARE v_old_DisplayName VARCHAR(100) CHARSET utf8;
     DECLARE v_old_Description TEXT CHARSET utf8;
     DECLARE v_old_Weighting SMALLINT;
-    DECLARE v_old_Icon VARCHAR(500) CHARSET utf8;
+    DECLARE v_old_PicturePath VARCHAR(500) CHARSET utf8;
     DECLARE v_DockItemId BIGINT;
     DECLARE v_old_DockItemId BIGINT;
     DECLARE v_SystemDockTypeId BIGINT;
@@ -13840,11 +14652,11 @@ BEGIN
     IF v_RowCount = 0 THEN
         SELECT f_BinToUuid(_table_uuid), _table_id, _system_auto_id,
             subitem_name, is_active, display_name, description, weighting,
-            icon, dock_items_id, system_dock_types_id, security_client_types_id,
+            picture_path, dock_items_id, system_dock_types_id, security_client_types_id,
             subitem_action
         INTO v_TableUuid, v_TableId, v_SystemPreviousId, v_old_SubitemName,
             v_old_IsActive, v_old_DisplayName, v_old_Description, v_old_Weighting,
-            v_old_Icon, v_old_DockItemId, v_old_SystemDockTypeId, v_old_SecurityClientTypeId,
+            v_old_PicturePath, v_old_DockItemId, v_old_SystemDockTypeId, v_old_SecurityClientTypeId,
             v_old_SubitemAction
         FROM system_dock_subitems
         WHERE _table_uuid = f_UuidToBin(i_TableUuid) AND _system_is_valid = 1
@@ -13855,7 +14667,7 @@ BEGIN
             OR COALESCE(i_DisplayName, '') != COALESCE(v_old_DisplayName, '')
             OR COALESCE(i_Description, '') != COALESCE(v_old_Description, '')
             OR COALESCE(i_Weighting, 0) != COALESCE(v_old_Weighting, 0)
-            OR COALESCE(i_Icon, '') != COALESCE(v_old_Icon, '')
+            OR COALESCE(i_PicturePath, '') != COALESCE(v_old_PicturePath, '')
             OR COALESCE(v_DockItemId, 0) != COALESCE(v_old_DockItemId, 0)
             OR COALESCE(v_SystemDockTypeId, 0) != COALESCE(v_old_SystemDockTypeId)
             OR COALESCE(i_IsActive, 0) != COALESCE(v_old_IsActive, 0)
@@ -13876,12 +14688,12 @@ BEGIN
                 _system_valid_from, _system_valid_to, _system_is_deleted, _system_is_valid,
                 _system_transaction_uuid, _system_previous_id, _system_next_id,
                 subitem_name, is_active, display_name, description, weighting,
-                icon, dock_items_id, system_dock_types_id, security_client_types_id,
+                picture_path, dock_items_id, system_dock_types_id, security_client_types_id,
                 subitem_action)
             SELECT _table_id, _table_uuid, v_Timestamp, NULL,
                 0, 1, v_TransactionUuid, v_SystemPreviousId,
                 NULL, i_SubitemName, i_IsActive, i_DisplayName, i_Description, i_Weighting,
-                i_Icon, v_DockItemId, v_SystemDockTypeId, v_SecurityClientTypeId,
+                i_PicturePath, v_DockItemId, v_SystemDockTypeId, v_SecurityClientTypeId,
                 i_SubitemAction
             FROM system_dock_subitems
             WHERE _system_auto_id = v_SystemPreviousId;
@@ -13923,10 +14735,10 @@ BEGIN
                     i_Weighting, 'Weighting', v_HumanReadable);
             END IF;
 
-            IF COALESCE(i_Icon, '') != COALESCE(v_old_Icon, '') THEN
+            IF COALESCE(i_PicturePath, '') != COALESCE(v_old_PicturePath, '') THEN
                 CALL p_system_LogTransactionDetailText(v_TransactionId,
-                    'system_dock_subitems', v_TableId, 'icon', v_old_Icon,
-                    i_Icon, 'Icon', v_HumanReadable);
+                    'system_dock_subitems', v_TableId, 'icon', v_old_PicturePath,
+                    i_PicturePath, 'Picture Path', v_HumanReadable);
             END IF;
 
             IF COALESCE(v_DockItemId, 0) != COALESCE(v_old_DockItemId, 0) THEN
@@ -14033,7 +14845,7 @@ DELIMITER ;;
     IN i_DisplayName VARCHAR(100) CHARSET utf8,
     IN i_Description TEXT CHARSET utf8,
     IN i_Weighting SMALLINT,
-    IN i_Icon VARCHAR(500) CHARSET utf8,
+    IN i_PicturePath VARCHAR(500) CHARSET utf8,
     IN i_TabAction VARCHAR(500) CHARSET utf8,
     IN i_IsActive BIT(1))
     MODIFIES SQL DATA
@@ -14074,7 +14886,7 @@ BEGIN
     DECLARE v_old_DisplayName VARCHAR(100) CHARSET utf8;
     DECLARE v_old_Description TEXT CHARSET utf8;
     DECLARE v_old_Weighting SMALLINT;
-    DECLARE v_old_Icon VARCHAR(500) CHARSET utf8;
+    DECLARE v_old_PicturePath VARCHAR(500) CHARSET utf8;
     DECLARE v_DockItemId BIGINT;
     DECLARE v_old_DockItemId BIGINT;
     DECLARE v_DockSubitemId BIGINT;
@@ -14123,12 +14935,12 @@ BEGIN
     IF v_RowCount = 0 THEN
         SELECT f_BinToUuid(_table_uuid), _table_id, _system_auto_id,
             tab_name, is_active, display_name, description, weighting,
-            icon, dock_items_id, dock_subitems_id, security_client_types_id,
+            picture_path, dock_items_id, dock_subitems_id, security_client_types_id,
             tab_action, system_dock_types_id, dock_items_id,
             dock_subitems_id
         INTO v_TableUuid, v_TableId, v_SystemPreviousId, v_old_TabName,
             v_old_IsActive, v_old_DisplayName, v_old_Description, v_old_Weighting,
-            v_old_Icon, v_old_DockItemId, v_old_DockSubitemId, v_old_SecurityClientTypeId,
+            v_old_PicturePath, v_old_DockItemId, v_old_DockSubitemId, v_old_SecurityClientTypeId,
             v_old_TabAction, v_old_SystemDockTypeId, v_old_DockItemId,
             v_old_DockSubitemId
         FROM system_dock_tabs
@@ -14140,7 +14952,7 @@ BEGIN
             OR COALESCE(i_DisplayName, '') != COALESCE(v_old_DisplayName, '')
             OR COALESCE(i_Description, '') != COALESCE(v_old_Description, '')
             OR COALESCE(i_Weighting, 0) != COALESCE(v_old_Weighting, 0)
-            OR COALESCE(i_Icon, '') != COALESCE(v_old_Icon, '')
+            OR COALESCE(i_PicturePath, '') != COALESCE(v_old_PicturePath, '')
             OR COALESCE(v_DockItemId, 0) != COALESCE(v_old_DockItemId, 0)
             OR COALESCE(v_DockSubitemId, 0) != COALESCE(v_old_DockSubitemId, 0)
             OR COALESCE(v_SystemDockTypeId, 0) != COALESCE(v_old_SystemDockTypeId)
@@ -14162,12 +14974,12 @@ BEGIN
                 _system_valid_from, _system_valid_to, _system_is_deleted, _system_is_valid,
                 _system_transaction_uuid, _system_previous_id, _system_next_id,
                 tab_name, is_active, display_name, description, weighting,
-                icon, dock_items_id, dock_subitems_id, security_client_types_id,
+                picture_path, dock_items_id, dock_subitems_id, security_client_types_id,
                 tab_action, system_dock_types_id)
             SELECT _table_id, _table_uuid, v_Timestamp, NULL,
                 0, 1, v_TransactionUuid, v_SystemPreviousId,
                 NULL, i_TabName, i_IsActive, i_DisplayName, i_Description, i_Weighting,
-                i_Icon, v_DockItemId, v_DockSubitemId, v_SecurityClientTypeId,
+                i_PicturePath, v_DockItemId, v_DockSubitemId, v_SecurityClientTypeId,
                 i_TabAction, v_SystemDockTypeId
             FROM system_dock_tabs
             WHERE _system_auto_id = v_SystemPreviousId;
@@ -14209,10 +15021,10 @@ BEGIN
                     i_Weighting, 'Weighting', v_HumanReadable);
             END IF;
 
-            IF COALESCE(i_Icon, '') != COALESCE(v_old_Icon, '') THEN
+            IF COALESCE(i_PicturePath, '') != COALESCE(v_old_PicturePath, '') THEN
                 CALL p_system_LogTransactionDetailText(v_TransactionId,
-                    'system_dock_tabs', v_TableId, 'icon', v_old_Icon,
-                    i_Icon, 'Icon', v_HumanReadable);
+                    'system_dock_tabs', v_TableId, 'picture_path', v_old_PicturePath,
+                    i_PicturePath, 'Picture Path', v_HumanReadable);
             END IF;
 
             IF COALESCE(v_DockItemId, 0) != COALESCE(v_old_DockItemId, 0) THEN
@@ -15372,10 +16184,10 @@ BEGIN
         INSERT system_docks (_table_id, _table_uuid,
             _system_valid_from, _system_valid_to, _system_is_deleted, _system_is_valid,
             _system_transaction_uuid, _system_previous_id, _system_next_id,
-            dock_name, display_name, description, weighting, icon, is_active)
+            dock_name, display_name, description, weighting, picture_path, is_active)
         SELECT _table_id, _table_uuid, v_Timestamp, NULL,
             1, 1, v_TransactionUuid, v_SystemPreviousId,
-            NULL, dock_name, display_name, description, weighting, icon, is_active
+            NULL, dock_name, display_name, description, weighting, picture_path, is_active
         FROM system_docks
         WHERE _system_auto_id = v_SystemPreviousId;
 
@@ -15479,11 +16291,11 @@ BEGIN
         INSERT system_dock_items (_table_id, _table_uuid,
             _system_valid_from, _system_valid_to, _system_is_deleted, _system_is_valid,
             _system_transaction_uuid, _system_previous_id, _system_next_id,
-            item_name, display_name, description, weighting, icon, is_active,
+            item_name, display_name, description, weighting, picture_path, is_active,
             docks_id, system_dock_types_id, action)
         SELECT _table_id, _table_uuid, v_Timestamp, NULL,
             1, 1, v_TransactionUuid, v_SystemPreviousId,
-            NULL, dock_name, display_name, description, weighting, icon, is_active,
+            NULL, dock_name, display_name, description, weighting, picture_path, is_active,
             docks_id, system_dock_types_id, action
         FROM system_dock_items
         WHERE _system_auto_id = v_SystemPreviousId;
@@ -15581,11 +16393,11 @@ BEGIN
         INSERT system_dock_subitems (_table_id, _table_uuid,
             _system_valid_from, _system_valid_to, _system_is_deleted, _system_is_valid,
             _system_transaction_uuid, _system_previous_id, _system_next_id,
-            item_name, display_name, description, weighting, icon, is_active,
+            item_name, display_name, description, weighting, picture_path, is_active,
             dock_items_id, system_dock_types_id, action)
         SELECT _table_id, _table_uuid, v_Timestamp, NULL,
             1, 1, v_TransactionUuid, v_SystemPreviousId,
-            NULL, dock_name, display_name, description, weighting, icon, is_active,
+            NULL, dock_name, display_name, description, weighting, picture_path, is_active,
             dock_items_id, system_dock_types_id, action
         FROM system_dock_subitems
         WHERE _system_auto_id = v_SystemPreviousId;
@@ -15683,11 +16495,11 @@ BEGIN
         INSERT system_dock_tabs (_table_id, _table_uuid,
             _system_valid_from, _system_valid_to, _system_is_deleted, _system_is_valid,
             _system_transaction_uuid, _system_previous_id, _system_next_id,
-            tab_name, display_name, description, weighting, icon, is_active,
+            tab_name, display_name, description, weighting, picture_path, is_active,
             dock_items_id, dock_subitems_id, action, system_dock_types_id)
         SELECT _table_id, _table_uuid, v_Timestamp, NULL,
             1, 1, v_TransactionUuid, v_SystemPreviousId,
-            NULL, tab_name, display_name, description, weighting, icon, is_active,
+            NULL, tab_name, display_name, description, weighting, picture_path, is_active,
             dock_items_id, dock_subitems_id, action, system_dock_types_id
         FROM system_dock_tabs
         WHERE _system_auto_id = v_SystemPreviousId;
@@ -17718,4 +18530,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-06-26  9:14:05
+-- Dump completed on 2012-06-29  8:54:04
