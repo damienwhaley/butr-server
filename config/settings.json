@@ -5,15 +5,16 @@
     "SystemFilePath": "logs/butr.log",
     "HttpFilePath": "logs/http.log",
     "MessageFilePath": "logs/message.log",
-    "Console": "true"
+    "Console": true,
+    "PidFilePath": "logs/butr.pid"
   },
   "Sql": {
     "Engine": "mysql",
     "Name": "butr",
     "Host": "localhost",
     "Port": 3306,
-    "User": "butr",
-    "Pass": "butr"
+    "User": "DBUSER",
+    "Pass": "DBPASS"
   },
   "NoSql": {
     "Engine": "redis",

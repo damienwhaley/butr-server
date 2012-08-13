@@ -114,6 +114,14 @@ remove_system_log_type_configuration
 remove_table
 remove_user
 
+Next
+====
+add_dock_subtab
+fetch_dock_subtab
+modify_dock_subtab
+remove_dock_subtab
+list_dock_subtabs
+
 To Do (65)
 ===========
 add_dock_item_permission

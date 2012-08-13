@@ -156,25 +156,31 @@ security_dock_items_permissions
 ===============================
 p_security_AddDockItemPermission
 p_security_RemoveDockItemPermission
-p_security_ListDockItemPermission
+p_security_ListUserDockItemPermission
 
 security_dock_subitems_permissions
 ==================================
 p_security_AddDockSubitemPermission
 p_security_RemoveDockSubitemPermission
-p_security_ListDockSubitemPermisison
+p_security_ListUserDockSubitemPermisison
+
+security_dock_subtabs_permissions
+==================================
+p_security_AddDockSubtabPermission
+p_security_RemoveDockSubtabPermission
+p_security_ListUserDockSubtabPermisison
 
 security_dock_tabs_permissions
 ==============================
 p_security_AddDockTabPermission
 p_security_RemoveDockTabPermission
-p_security_ListDockTabPermission
+p_security_ListUserDockTabPermission
 
 security_docks_permissions
 ==========================
 p_security_AddDockPermission
 p_security_RemoveDockPrmission
-p_security_ListDockPermission
+p_security_ListUserDockPermission
 
 security_effective_permissions
 ==============================
@@ -264,12 +270,20 @@ p_system_FetchDockItem
 p_system_ListDockItem
 
 system_dock_subitems
-=================
+====================
 p_system_AddDockSubitem
 p_system_ModifyDockSubitem
 p_system_RemoveDockSubitem
 p_system_FetchDockSubitem
 p_system_ListDockSubitem
+
+system_dock_subtabs
+===================
+p_system_AddDockSubtab
+p_system_ModifyDockSubtab
+p_system_RemoveDockSubtab
+p_system_FetchDockSubtab
+p_system_ListDockSubtab
 
 system_dock_tabs
 =================

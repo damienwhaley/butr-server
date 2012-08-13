@@ -2,6 +2,8 @@ Node.js
 =======
 
 * clean up api_json have one check per line in all files.
+* do more validation checks to make sure the data seems OK.
+* have a LIST_SIZE_ALL variable.
 
 * figure out check_session_alive where session extended but redis does not think so...
   it seems to allow you to execute a command and then it tels you it is not valid.
