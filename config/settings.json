@@ -1,5 +1,6 @@
 {
   "Language": "en",
+  "ApplicationPath": "/home/damien/Projects/node.js/butr",
   "Logging": {
     "Level": 7,
     "SystemFilePath": "logs/butr.log",

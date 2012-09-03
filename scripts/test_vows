@@ -1,7 +1,0 @@
-#!/bin/bash
-cd ~/Projects/node.js/butr
-scripts/butr &
-sleep 5
-node_modules/vows/bin/vows tests/vows/*-test.js
-sleep 5
-kill -INT `cat logs/butr.pid`

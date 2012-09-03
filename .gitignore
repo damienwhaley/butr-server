@@ -2,6 +2,7 @@
 
 # Butr folders to exclude
 logs/*.log
+logs/*.pid
 locales/*.tmp
 
 # Node.js files folders to exclude
