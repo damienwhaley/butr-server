@@ -12,6 +12,11 @@ Node.js
 
 * change references to app settings to a fetch from config.
 
+* make sure you test for undefined/null/value in that order
+
+* make sure all bit/boolean are passed around as true/false once
+  they have left the database.
+
 NEXT STEPS:
 
 * think about replication as a target /replication. need replication keys and

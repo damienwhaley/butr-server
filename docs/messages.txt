@@ -1,9 +1,10 @@
-Done (112)
+Done (117)
 =========
 add_country
 add_dock
 add_dock_item
 add_dock_subitem
+add_dock_subtab
 add_dock_tab
 add_global_configuration
 add_global_language_configuration
@@ -28,6 +29,7 @@ fetch_country
 fetch_dock
 fetch_dock_item
 fetch_dock_subitem
+fetch_dock_subtab
 fetch_dock_tab
 fetch_global_configuration
 fetch_global_language_configuration
@@ -50,6 +52,7 @@ fetch_user
 list_countries
 list_dock_items
 list_dock_subitems
+list_dock_subtabs
 list_dock_tabs
 list_docks
 list_global_configurations
@@ -74,6 +77,7 @@ modify_country
 modify_dock
 modify_dock_item
 modify_dock_subitem
+modify_dock_subtab
 modify_dock_tab
 modify_global_configuration
 modify_global_language_configuration
@@ -96,6 +100,7 @@ remove_country
 remove_dock
 remove_dock_item
 remove_dock_subitem
+remove_dock_subtab
 remove_dock_tab
 remove_global_configuration
 remove_global_language_configuration
@@ -114,15 +119,7 @@ remove_system_log_type_configuration
 remove_table
 remove_user
 
-Next
-====
-add_dock_subtab
-fetch_dock_subtab
-modify_dock_subtab
-remove_dock_subtab
-list_dock_subtabs
-
-To Do (65)
+To Do (55)
 ===========
 add_dock_item_permission
 add_dock_permission
