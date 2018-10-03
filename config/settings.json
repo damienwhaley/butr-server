@@ -19,11 +19,11 @@
   },
   "NoSql": {
     "Engine": "redis",
-    "Name": "",
+    "Name": "butr",
     "Host": "192.168.56.101",
     "Port": 6379,
-    "User": "",
-    "Pass": ""
+    "User": "butr",
+    "Pass": "butr"
   },
   "Gateway": {
     "VirtualHost": "butr-server.node.local",

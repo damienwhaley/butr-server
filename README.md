@@ -6,13 +6,17 @@ This repository holds the Node.js server component of the system. There is also 
 
 The project home page is found at [www.butr.org](http://www.butr.org). Like this project it is also a work in progress.
 
+## Running
+
+To run this use the following command: `NODE_ENV=develop npm start`
+
 ## Version
 
 0.0.1-alpha
 
 ## License
 
-Copyright (c) 2012 Whalebone Studios and Contributors.
+Copyright (c) 2012-2018 Whalebone Studios and Contributors.
 
 AGPLv3+
 

@@ -1,7 +1,7 @@
 /*
  * Butr Universal Travel Reservations
  * A bleeding edge business management system for the travel industry.
- * 
+ *
  * Copyright (C) 2012 Whalebone Studios and contributors.
  *
  * This program is free software: you can redistribute it and/or modify
