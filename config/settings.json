@@ -1,6 +1,6 @@
 {
   "Language": "en",
-  "ApplicationPath": "/home/damien/Projects/node.js/butr",
+  "ApplicationPath": "/Users/damien/Projects/github/damienwhaley/butr-server",
   "Logging": {
     "Level": 7,
     "SystemFilePath": "logs/butr.log",
@@ -12,15 +12,15 @@
   "Sql": {
     "Engine": "mysql",
     "Name": "butr",
-    "Host": "localhost",
+    "Host": "192.168.56.101",
     "Port": 3306,
-    "User": "DBUSER",
-    "Pass": "DBPASS"
+    "User": "butr",
+    "Pass": "butr"
   },
   "NoSql": {
     "Engine": "redis",
     "Name": "",
-    "Host": "localhost",
+    "Host": "192.168.56.101",
     "Port": 6379,
     "User": "",
     "Pass": ""
@@ -28,14 +28,14 @@
   "Gateway": {
     "VirtualHost": "butr-server.node.local",
     "Protocol": "http",
-    "Port": 3000,      
+    "Port": 3000,
     "Key": "",
     "Cert": "",
     "Cluster": 2
   },
   "Cache": {
    "Engine": "memcached",
-   "Host": "localhost",
+   "Host": "192.168.56.101",
    "Port": 11211,
    "Weight": 1,
    "Lifetime": 300

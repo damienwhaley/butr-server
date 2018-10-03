@@ -1,6 +1,6 @@
 {
   "name": "butr-server",
-  "preferGlobal": false,  
+  "preferGlobal": false,
   "version": "0.0.1alpha",
   "author": "Whalebone Studios <butr@whalebonestudios.com>",
   "contributors": [
@@ -42,7 +42,7 @@
     "long-stack-traces": ">= 0.1.2",
     "nodeunit": ">= 0.7.4",
     "request": ">= 2.10.0",
-    "vows": ">= 0.6.3",
+    "vows": ">= 0.6.3"
   },
   "license": "AGPLv3+",
   "engine": "node >= 0.8.6"
